@@ -14,12 +14,22 @@ from .audio_preproc import (
     load_speaker_data,
     preprocess_audio,
 )
+from .features import (
+    calculate_pitch_shift_ratio,
+    extract_f0,
+    extract_formants,
+    extract_mfcc,
+)
 
 __all__ = [
     "load_speaker_data",
     "compute_f0stats",
     "compute_rms_energy",
     "preprocess_audio",
+    "extract_f0",
+    "calculate_pitch_shift_ratio",
+    "extract_mfcc",
+    "extract_formants",
 ]
 
 # Later parts will extend this namespace with feature extraction, alignment,

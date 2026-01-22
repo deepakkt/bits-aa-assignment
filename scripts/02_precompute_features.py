@@ -1,10 +1,11 @@
 """
-Precompute preprocessed waveforms and basic statistics for all utterances.
+Precompute preprocessed waveforms and acoustic features for all utterances.
 
 This script reads the deterministic manifest produced in Part-2, applies the
 preprocessing pipeline (resample -> trim -> normalize -> pre-emphasize), and
-caches the results under ``artifacts/cache/preprocessed``. It also records
-simple RMS and F0 statistics to help sanity-check audio quality.
+caches the results under ``artifacts/cache/preprocessed``. It also extracts and
+caches MFCCs, F0 contours, and formant estimates under ``artifacts/cache/features``
+so later stages can train without recomputing features.
 """
 from __future__ import annotations
 
@@ -20,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 
 from vc.audio_preproc import compute_f0stats, compute_rms_energy, preprocess_audio  # noqa: E402
+from vc.features import extract_f0, extract_formants, extract_mfcc  # noqa: E402
 from vc.config import CACHE_DIR, MANIFEST_DIR, TARGET_SR, set_seeds  # noqa: E402
 from vc.io_utils import ensure_dir, get_logger, load_json, save_json  # noqa: E402
 
@@ -69,6 +71,7 @@ def preprocess_and_cache(
 
     Returns:
         cached_path: Location of the saved numpy file.
+        audio: Preprocessed waveform array.
         rms: RMS energy of the processed audio.
         f0_stats: Summary stats of the F0 contour.
     """
@@ -86,7 +89,56 @@ def preprocess_and_cache(
 
     rms = compute_rms_energy(audio)
     f0_stats = compute_f0stats(audio, TARGET_SR)
-    return cached_path, rms, f0_stats
+    return cached_path, audio, rms, f0_stats
+
+
+def extract_and_cache_features(
+    audio: np.ndarray,
+    split: str,
+    utt_id: str,
+    speaker_label: str,
+    cache_dir: Path,
+    force: bool,
+) -> Dict[str, object]:
+    """
+    Extract MFCC, F0, and formants for a preprocessed waveform and cache them.
+
+    Returns a summary dictionary containing cache locations and simple stats so
+    downstream scripts can align and train without recomputation.
+    """
+    feature_dir = ensure_dir(cache_dir / "features" / split)
+    base = f"{utt_id}_{speaker_label}"
+    f0_path = feature_dir / f"{base}_f0.npy"
+    mfcc_path = feature_dir / f"{base}_mfcc.npy"
+    formant_path = feature_dir / f"{base}_formants.npy"
+
+    if f0_path.exists() and not force:
+        f0 = np.load(f0_path)
+    else:
+        f0 = extract_f0(audio, TARGET_SR)
+        np.save(f0_path, f0)
+
+    if mfcc_path.exists() and not force:
+        mfcc = np.load(mfcc_path)
+    else:
+        mfcc = extract_mfcc(audio, TARGET_SR)
+        np.save(mfcc_path, mfcc)
+
+    if formant_path.exists() and not force:
+        formants = np.load(formant_path)
+    else:
+        formants = extract_formants(audio, TARGET_SR)
+        np.save(formant_path, formants)
+
+    voiced_ratio = float(np.mean(np.isfinite(f0))) if f0.size else 0.0
+    return {
+        "f0_path": str(f0_path.resolve()),
+        "mfcc_path": str(mfcc_path.resolve()),
+        "formant_path": str(formant_path.resolve()),
+        "frames": int(mfcc.shape[1]) if mfcc.ndim == 2 else 0,
+        "voiced_ratio": voiced_ratio,
+        "formants_hz": [float(x) for x in np.asarray(formants).tolist()],
+    }
 
 
 def process_split(
@@ -101,8 +153,11 @@ def process_split(
         utt_id = entry["utt_id"]
         for speaker_label in ("source", "target"):
             wav_path = Path(entry[speaker_label]["path"])
-            cached_path, rms, f0_stats = preprocess_and_cache(
+            cached_path, audio, rms, f0_stats = preprocess_and_cache(
                 wav_path, split, utt_id, speaker_label, cache_dir, force
+            )
+            feature_summary = extract_and_cache_features(
+                audio, split, utt_id, speaker_label, cache_dir, force
             )
             processed_entries.append(
                 {
@@ -111,6 +166,7 @@ def process_split(
                     "cached_path": str(cached_path.resolve()),
                     "rms": rms,
                     "f0_stats": f0_stats,
+                    "features": feature_summary,
                 }
             )
         logger.info("Processed %s pair %s", split, utt_id)
