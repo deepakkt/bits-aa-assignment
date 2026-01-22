@@ -1,0 +1,1206 @@
+{
+  "train": [
+    {
+      "utt_id": "arctic_b0230",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0230_source.npy",
+      "rms": 0.04038657993078232,
+      "f0_stats": {
+        "mean_f0": 131.48526000976562,
+        "std_f0": 7.231730937957764,
+        "min_f0": 115.53527069091797,
+        "max_f0": 139.7969970703125
+      }
+    },
+    {
+      "utt_id": "arctic_b0230",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0230_target.npy",
+      "rms": 0.05775722116231918,
+      "f0_stats": {
+        "mean_f0": 180.09442138671875,
+        "std_f0": 11.920575141906738,
+        "min_f0": 160.58457946777344,
+        "max_f0": 241.9988250732422
+      }
+    },
+    {
+      "utt_id": "arctic_a0375",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0375_source.npy",
+      "rms": 0.046269699931144714,
+      "f0_stats": {
+        "mean_f0": 127.98246765136719,
+        "std_f0": 21.892959594726562,
+        "min_f0": 65.97539520263672,
+        "max_f0": 155.11447143554688
+      }
+    },
+    {
+      "utt_id": "arctic_a0375",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0375_target.npy",
+      "rms": 0.05687692388892174,
+      "f0_stats": {
+        "mean_f0": 165.87448120117188,
+        "std_f0": 18.844860076904297,
+        "min_f0": 132.71517944335938,
+        "max_f0": 240.60501098632812
+      }
+    },
+    {
+      "utt_id": "arctic_a0445",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0445_source.npy",
+      "rms": 0.04438512772321701,
+      "f0_stats": {
+        "mean_f0": 107.44405364990234,
+        "std_f0": 5.386804103851318,
+        "min_f0": 101.74797058105469,
+        "max_f0": 122.40535736083984
+      }
+    },
+    {
+      "utt_id": "arctic_a0445",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0445_target.npy",
+      "rms": 0.056175049394369125,
+      "f0_stats": {
+        "mean_f0": 167.8720245361328,
+        "std_f0": 17.47120475769043,
+        "min_f0": 149.83070373535156,
+        "max_f0": 207.052978515625
+      }
+    },
+    {
+      "utt_id": "arctic_a0101",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0101_source.npy",
+      "rms": 0.03205380216240883,
+      "f0_stats": {
+        "mean_f0": 117.31895446777344,
+        "std_f0": 15.074600219726562,
+        "min_f0": 95.48416137695312,
+        "max_f0": 134.2572479248047
+      }
+    },
+    {
+      "utt_id": "arctic_a0101",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0101_target.npy",
+      "rms": 0.04676022380590439,
+      "f0_stats": {
+        "mean_f0": 191.4652862548828,
+        "std_f0": 16.500308990478516,
+        "min_f0": 152.44970703125,
+        "max_f0": 229.7396697998047
+      }
+    },
+    {
+      "utt_id": "arctic_a0542",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0542_source.npy",
+      "rms": 0.0353187620639801,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0542",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0542_target.npy",
+      "rms": 0.05334221571683884,
+      "f0_stats": {
+        "mean_f0": 179.49400329589844,
+        "std_f0": 15.588879585266113,
+        "min_f0": 156.01304626464844,
+        "max_f0": 219.364990234375
+      }
+    },
+    {
+      "utt_id": "arctic_a0199",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0199_source.npy",
+      "rms": 0.06194525584578514,
+      "f0_stats": {
+        "mean_f0": 137.0011749267578,
+        "std_f0": 4.569987773895264,
+        "min_f0": 128.1944122314453,
+        "max_f0": 145.56532287597656
+      }
+    },
+    {
+      "utt_id": "arctic_a0199",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0199_target.npy",
+      "rms": 0.053497616201639175,
+      "f0_stats": {
+        "mean_f0": 174.50051879882812,
+        "std_f0": 12.841987609863281,
+        "min_f0": 145.56532287597656,
+        "max_f0": 220.63575744628906
+      }
+    },
+    {
+      "utt_id": "arctic_a0298",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0298_source.npy",
+      "rms": 0.04321787506341934,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0298",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0298_target.npy",
+      "rms": 0.052396468818187714,
+      "f0_stats": {
+        "mean_f0": 169.60459899902344,
+        "std_f0": 17.646709442138672,
+        "min_f0": 139.7969970703125,
+        "max_f0": 225.79287719726562
+      }
+    },
+    {
+      "utt_id": "arctic_a0129",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0129_source.npy",
+      "rms": 0.061929453164339066,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0129",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0129_target.npy",
+      "rms": 0.05752238631248474,
+      "f0_stats": {
+        "mean_f0": 195.96173095703125,
+        "std_f0": 13.001118659973145,
+        "min_f0": 178.17974853515625,
+        "max_f0": 225.79287719726562
+      }
+    },
+    {
+      "utt_id": "arctic_a0021",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0021_source.npy",
+      "rms": 0.06247030571103096,
+      "f0_stats": {
+        "mean_f0": 136.0007781982422,
+        "std_f0": 6.058077335357666,
+        "min_f0": 122.40535736083984,
+        "max_f0": 148.10975646972656
+      }
+    },
+    {
+      "utt_id": "arctic_a0021",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0021_target.npy",
+      "rms": 0.04029541835188866,
+      "f0_stats": {
+        "mean_f0": 191.567138671875,
+        "std_f0": 19.387916564941406,
+        "min_f0": 167.2106475830078,
+        "max_f0": 266.96795654296875
+      }
+    },
+    {
+      "utt_id": "arctic_b0013",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0013_source.npy",
+      "rms": 0.04163166880607605,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0013",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0013_target.npy",
+      "rms": 0.05884576588869095,
+      "f0_stats": {
+        "mean_f0": 178.71778869628906,
+        "std_f0": 18.333755493164062,
+        "min_f0": 143.06459045410156,
+        "max_f0": 219.364990234375
+      }
+    },
+    {
+      "utt_id": "arctic_b0155",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0155_source.npy",
+      "rms": 0.04943466931581497,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0155",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0155_target.npy",
+      "rms": 0.0570792481303215,
+      "f0_stats": {
+        "mean_f0": 179.36782836914062,
+        "std_f0": 11.775989532470703,
+        "min_f0": 162.4504852294922,
+        "max_f0": 208.25242614746094
+      }
+    },
+    {
+      "utt_id": "arctic_a0253",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0253_source.npy",
+      "rms": 0.042444199323654175,
+      "f0_stats": {
+        "mean_f0": 127.7060775756836,
+        "std_f0": 9.48473072052002,
+        "min_f0": 110.31787872314453,
+        "max_f0": 146.4085693359375
+      }
+    },
+    {
+      "utt_id": "arctic_a0253",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0253_target.npy",
+      "rms": 0.04567354917526245,
+      "f0_stats": {
+        "mean_f0": 173.51882934570312,
+        "std_f0": 21.478445053100586,
+        "min_f0": 148.10975646972656,
+        "max_f0": 244.8107147216797
+      }
+    },
+    {
+      "utt_id": "arctic_b0496",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0496_source.npy",
+      "rms": 0.07923419773578644,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0496",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0496_target.npy",
+      "rms": 0.047015123069286346,
+      "f0_stats": {
+        "mean_f0": 174.2923126220703,
+        "std_f0": 14.684820175170898,
+        "min_f0": 146.4085693359375,
+        "max_f0": 210.67221069335938
+      }
+    },
+    {
+      "utt_id": "arctic_b0146",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0146_source.npy",
+      "rms": 0.05848328396677971,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0146",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0146_target.npy",
+      "rms": 0.059561535716056824,
+      "f0_stats": {
+        "mean_f0": 175.53720092773438,
+        "std_f0": 12.50249195098877,
+        "min_f0": 145.56532287597656,
+        "max_f0": 193.18727111816406
+      }
+    },
+    {
+      "utt_id": "arctic_a0404",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0404_source.npy",
+      "rms": 0.056248582899570465,
+      "f0_stats": {
+        "mean_f0": 127.01579284667969,
+        "std_f0": 14.073224067687988,
+        "min_f0": 107.1773452758789,
+        "max_f0": 157.82583618164062
+      }
+    },
+    {
+      "utt_id": "arctic_a0404",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0404_target.npy",
+      "rms": 0.058347295969724655,
+      "f0_stats": {
+        "mean_f0": 166.71395874023438,
+        "std_f0": 17.38612937927246,
+        "min_f0": 134.2572479248047,
+        "max_f0": 236.4715576171875
+      }
+    },
+    {
+      "utt_id": "arctic_b0212",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0212_source.npy",
+      "rms": 0.048112690448760986,
+      "f0_stats": {
+        "mean_f0": 109.77559661865234,
+        "std_f0": 2.9989888668060303,
+        "min_f0": 105.33610534667969,
+        "max_f0": 116.20455932617188
+      }
+    },
+    {
+      "utt_id": "arctic_b0212",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0212_target.npy",
+      "rms": 0.045403674244880676,
+      "f0_stats": {
+        "mean_f0": 174.34182739257812,
+        "std_f0": 12.263894081115723,
+        "min_f0": 155.11447143554688,
+        "max_f0": 202.32388305664062
+      }
+    },
+    {
+      "utt_id": "arctic_b0308",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0308_source.npy",
+      "rms": 0.0676499456167221,
+      "f0_stats": {
+        "mean_f0": 130.7509765625,
+        "std_f0": 6.698633670806885,
+        "min_f0": 120.30250549316406,
+        "max_f0": 143.06459045410156
+      }
+    },
+    {
+      "utt_id": "arctic_b0308",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0308_target.npy",
+      "rms": 0.04609839618206024,
+      "f0_stats": {
+        "mean_f0": 172.5632781982422,
+        "std_f0": 14.778399467468262,
+        "min_f0": 149.83070373535156,
+        "max_f0": 241.9988250732422
+      }
+    },
+    {
+      "utt_id": "arctic_b0314",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0314_source.npy",
+      "rms": 0.059851597994565964,
+      "f0_stats": {
+        "mean_f0": 123.34817504882812,
+        "std_f0": 11.886364936828613,
+        "min_f0": 102.93022155761719,
+        "max_f0": 138.9918212890625
+      }
+    },
+    {
+      "utt_id": "arctic_b0314",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0314_target.npy",
+      "rms": 0.040109407156705856,
+      "f0_stats": {
+        "mean_f0": 184.0281219482422,
+        "std_f0": 23.591320037841797,
+        "min_f0": 152.44970703125,
+        "max_f0": 231.07054138183594
+      }
+    },
+    {
+      "utt_id": "arctic_a0434",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0434_source.npy",
+      "rms": 0.046914197504520416,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0434",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0434_target.npy",
+      "rms": 0.05810443311929703,
+      "f0_stats": {
+        "mean_f0": 168.8417510986328,
+        "std_f0": 12.643270492553711,
+        "min_f0": 150.69866943359375,
+        "max_f0": 204.67477416992188
+      }
+    },
+    {
+      "utt_id": "arctic_b0398",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0398_source.npy",
+      "rms": 0.05248798802495003,
+      "f0_stats": {
+        "mean_f0": 119.22273254394531,
+        "std_f0": 3.6007680892944336,
+        "min_f0": 111.59971618652344,
+        "max_f0": 125.26644134521484
+      }
+    },
+    {
+      "utt_id": "arctic_b0398",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0398_target.npy",
+      "rms": 0.07173381000757217,
+      "f0_stats": {
+        "mean_f0": 164.4486846923828,
+        "std_f0": 16.95977783203125,
+        "min_f0": 145.56532287597656,
+        "max_f0": 210.67221069335938
+      }
+    },
+    {
+      "utt_id": "arctic_a0430",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0430_source.npy",
+      "rms": 0.047917962074279785,
+      "f0_stats": {
+        "mean_f0": 152.34317016601562,
+        "std_f0": 11.460225105285645,
+        "min_f0": 130.43521118164062,
+        "max_f0": 183.4008026123047
+      }
+    },
+    {
+      "utt_id": "arctic_a0430",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0430_target.npy",
+      "rms": 0.06023884937167168,
+      "f0_stats": {
+        "mean_f0": 169.23117065429688,
+        "std_f0": 19.198017120361328,
+        "min_f0": 138.1912841796875,
+        "max_f0": 225.79287719726562
+      }
+    },
+    {
+      "utt_id": "arctic_b0336",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0336_source.npy",
+      "rms": 0.04513293504714966,
+      "f0_stats": {
+        "mean_f0": 118.6326904296875,
+        "std_f0": 21.42679786682129,
+        "min_f0": 88.57675170898438,
+        "max_f0": 146.4085693359375
+      }
+    },
+    {
+      "utt_id": "arctic_b0336",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0336_target.npy",
+      "rms": 0.05499019846320152,
+      "f0_stats": {
+        "mean_f0": 181.07606506347656,
+        "std_f0": 15.670716285705566,
+        "min_f0": 162.4504852294922,
+        "max_f0": 209.45883178710938
+      }
+    },
+    {
+      "utt_id": "arctic_a0313",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0313_source.npy",
+      "rms": 0.0551178865134716,
+      "f0_stats": {
+        "mean_f0": 145.7664031982422,
+        "std_f0": 12.371562957763672,
+        "min_f0": 127.45606231689453,
+        "max_f0": 163.39154052734375
+      }
+    },
+    {
+      "utt_id": "arctic_a0313",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0313_target.npy",
+      "rms": 0.044074736535549164,
+      "f0_stats": {
+        "mean_f0": 173.04539489746094,
+        "std_f0": 21.044769287109375,
+        "min_f0": 141.42135620117188,
+        "max_f0": 221.9138946533203
+      }
+    },
+    {
+      "utt_id": "arctic_a0180",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0180_source.npy",
+      "rms": 0.08840080350637436,
+      "f0_stats": {
+        "mean_f0": 123.17140197753906,
+        "std_f0": 5.248796463012695,
+        "min_f0": 119.60961151123047,
+        "max_f0": 135.0349884033203
+      }
+    },
+    {
+      "utt_id": "arctic_a0180",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0180_target.npy",
+      "rms": 0.0694786086678505,
+      "f0_stats": {
+        "mean_f0": 167.14547729492188,
+        "std_f0": 10.060380935668945,
+        "min_f0": 145.56532287597656,
+        "max_f0": 185.53182983398438
+      }
+    },
+    {
+      "utt_id": "arctic_b0505",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0505_source.npy",
+      "rms": 0.05307186767458916,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0505",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0505_target.npy",
+      "rms": 0.04346830025315285,
+      "f0_stats": {
+        "mean_f0": 174.71804809570312,
+        "std_f0": 19.571250915527344,
+        "min_f0": 136.60401916503906,
+        "max_f0": 221.9138946533203
+      }
+    },
+    {
+      "utt_id": "arctic_b0313",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0313_source.npy",
+      "rms": 0.0752362385392189,
+      "f0_stats": {
+        "mean_f0": 115.8764877319336,
+        "std_f0": 5.607786178588867,
+        "min_f0": 105.33610534667969,
+        "max_f0": 124.54496002197266
+      }
+    },
+    {
+      "utt_id": "arctic_b0313",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0313_target.npy",
+      "rms": 0.05356399342417717,
+      "f0_stats": {
+        "mean_f0": 177.76446533203125,
+        "std_f0": 14.661255836486816,
+        "min_f0": 150.69866943359375,
+        "max_f0": 221.9138946533203
+      }
+    },
+    {
+      "utt_id": "arctic_a0325",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0325_source.npy",
+      "rms": 0.06819391995668411,
+      "f0_stats": {
+        "mean_f0": 120.77857208251953,
+        "std_f0": 4.980555057525635,
+        "min_f0": 110.31787872314453,
+        "max_f0": 125.99210357666016
+      }
+    },
+    {
+      "utt_id": "arctic_a0325",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0325_target.npy",
+      "rms": 0.07372134178876877,
+      "f0_stats": {
+        "mean_f0": 165.029052734375,
+        "std_f0": 14.682356834411621,
+        "min_f0": 135.81724548339844,
+        "max_f0": 205.86044311523438
+      }
+    },
+    {
+      "utt_id": "arctic_a0422",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0422_source.npy",
+      "rms": 0.04187130182981491,
+      "f0_stats": {
+        "mean_f0": 136.40760803222656,
+        "std_f0": 13.459115982055664,
+        "min_f0": 116.20455932617188,
+        "max_f0": 186.60659790039062
+      }
+    },
+    {
+      "utt_id": "arctic_a0422",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0422_target.npy",
+      "rms": 0.02938840538263321,
+      "f0_stats": {
+        "mean_f0": 170.41539001464844,
+        "std_f0": 19.83519172668457,
+        "min_f0": 143.06459045410156,
+        "max_f0": 218.10154724121094
+      }
+    },
+    {
+      "utt_id": "arctic_a0305",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0305_source.npy",
+      "rms": 0.058067359030246735,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0305",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0305_target.npy",
+      "rms": 0.05288969725370407,
+      "f0_stats": {
+        "mean_f0": 161.6896209716797,
+        "std_f0": 17.48789405822754,
+        "min_f0": 126.72196960449219,
+        "max_f0": 205.86044311523438
+      }
+    },
+    {
+      "utt_id": "arctic_b0349",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0349_source.npy",
+      "rms": 0.05754153057932854,
+      "f0_stats": {
+        "mean_f0": 140.7519073486328,
+        "std_f0": 15.705002784729004,
+        "min_f0": 122.40535736083984,
+        "max_f0": 171.11900329589844
+      }
+    },
+    {
+      "utt_id": "arctic_b0349",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0349_target.npy",
+      "rms": 0.062005188316106796,
+      "f0_stats": {
+        "mean_f0": 174.34140014648438,
+        "std_f0": 13.615460395812988,
+        "min_f0": 155.11447143554688,
+        "max_f0": 219.364990234375
+      }
+    },
+    {
+      "utt_id": "arctic_a0084",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0084_source.npy",
+      "rms": 0.07145137339830399,
+      "f0_stats": {
+        "mean_f0": 116.32769012451172,
+        "std_f0": 11.1063814163208,
+        "min_f0": 100.57929229736328,
+        "max_f0": 134.2572479248047
+      }
+    },
+    {
+      "utt_id": "arctic_a0084",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0084_target.npy",
+      "rms": 0.059611838310956955,
+      "f0_stats": {
+        "mean_f0": 185.7054443359375,
+        "std_f0": 19.70563507080078,
+        "min_f0": 150.69866943359375,
+        "max_f0": 237.84141540527344
+      }
+    },
+    {
+      "utt_id": "arctic_b0227",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0227_source.npy",
+      "rms": 0.05536489188671112,
+      "f0_stats": {
+        "mean_f0": 120.69738006591797,
+        "std_f0": 15.069499015808105,
+        "min_f0": 100.0,
+        "max_f0": 141.42135620117188
+      }
+    },
+    {
+      "utt_id": "arctic_b0227",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0227_target.npy",
+      "rms": 0.05691448971629143,
+      "f0_stats": {
+        "mean_f0": 185.27655029296875,
+        "std_f0": 19.155908584594727,
+        "min_f0": 156.9168243408203,
+        "max_f0": 224.49241638183594
+      }
+    },
+    {
+      "utt_id": "arctic_b0007",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0007_source.npy",
+      "rms": 0.05857488885521889,
+      "f0_stats": {
+        "mean_f0": 144.588623046875,
+        "std_f0": 15.841410636901855,
+        "min_f0": 114.20823669433594,
+        "max_f0": 167.2106475830078
+      }
+    },
+    {
+      "utt_id": "arctic_b0007",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0007_target.npy",
+      "rms": 0.050365932285785675,
+      "f0_stats": {
+        "mean_f0": 179.5030975341797,
+        "std_f0": 17.47011947631836,
+        "min_f0": 156.9168243408203,
+        "max_f0": 216.84536743164062
+      }
+    },
+    {
+      "utt_id": "arctic_a0046",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0046_source.npy",
+      "rms": 0.06716400384902954,
+      "f0_stats": {
+        "mean_f0": 117.14134979248047,
+        "std_f0": 10.43507194519043,
+        "min_f0": 81.69577026367188,
+        "max_f0": 140.60682678222656
+      }
+    },
+    {
+      "utt_id": "arctic_a0046",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0046_target.npy",
+      "rms": 0.06247981637716293,
+      "f0_stats": {
+        "mean_f0": 196.44776916503906,
+        "std_f0": 17.45183563232422,
+        "min_f0": 170.13343811035156,
+        "max_f0": 259.367919921875
+      }
+    },
+    {
+      "utt_id": "arctic_b0450",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0450_source.npy",
+      "rms": 0.07132751494646072,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0450",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0450_target.npy",
+      "rms": 0.05496612936258316,
+      "f0_stats": {
+        "mean_f0": 176.987548828125,
+        "std_f0": 15.181087493896484,
+        "min_f0": 148.10975646972656,
+        "max_f0": 214.3546905517578
+      }
+    },
+    {
+      "utt_id": "arctic_b0020",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0020_source.npy",
+      "rms": 0.048096660524606705,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0020",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_b0020_target.npy",
+      "rms": 0.04661044478416443,
+      "f0_stats": {
+        "mean_f0": 183.32913208007812,
+        "std_f0": 18.791759490966797,
+        "min_f0": 161.51483154296875,
+        "max_f0": 276.382568359375
+      }
+    },
+    {
+      "utt_id": "arctic_a0477",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0477_source.npy",
+      "rms": 0.060104575008153915,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0477",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0477_target.npy",
+      "rms": 0.05627148598432541,
+      "f0_stats": {
+        "mean_f0": 184.90966796875,
+        "std_f0": 24.679885864257812,
+        "min_f0": 148.96774291992188,
+        "max_f0": 294.5133972167969
+      }
+    },
+    {
+      "utt_id": "arctic_a0514",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0514_source.npy",
+      "rms": 0.06929905712604523,
+      "f0_stats": {
+        "mean_f0": 133.8812255859375,
+        "std_f0": 16.196990966796875,
+        "min_f0": 118.23577880859375,
+        "max_f0": 172.11029052734375
+      }
+    },
+    {
+      "utt_id": "arctic_a0514",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0514_target.npy",
+      "rms": 0.06322500854730606,
+      "f0_stats": {
+        "mean_f0": 180.69268798828125,
+        "std_f0": 16.544715881347656,
+        "min_f0": 148.96774291992188,
+        "max_f0": 221.9138946533203
+      }
+    },
+    {
+      "utt_id": "arctic_a0381",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0381_source.npy",
+      "rms": 0.09359849989414215,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0381",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0381_target.npy",
+      "rms": 0.09283609688282013,
+      "f0_stats": {
+        "mean_f0": 169.9109344482422,
+        "std_f0": 9.367661476135254,
+        "min_f0": 152.44970703125,
+        "max_f0": 178.17974853515625
+      }
+    },
+    {
+      "utt_id": "arctic_a0181",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0181_source.npy",
+      "rms": 0.06222391873598099,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0181",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/train/arctic_a0181_target.npy",
+      "rms": 0.07036688178777695,
+      "f0_stats": {
+        "mean_f0": 174.4160919189453,
+        "std_f0": 13.8565034866333,
+        "min_f0": 155.11447143554688,
+        "max_f0": 202.32388305664062
+      }
+    }
+  ],
+  "test": [
+    {
+      "utt_id": "arctic_b0178",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0178_source.npy",
+      "rms": 0.049544595181941986,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0178",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0178_target.npy",
+      "rms": 0.0640757754445076,
+      "f0_stats": {
+        "mean_f0": 182.45164489746094,
+        "std_f0": 11.87852954864502,
+        "min_f0": 162.4504852294922,
+        "max_f0": 207.052978515625
+      }
+    },
+    {
+      "utt_id": "arctic_a0513",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0513_source.npy",
+      "rms": 0.054236654192209244,
+      "f0_stats": {
+        "mean_f0": 153.20755004882812,
+        "std_f0": 11.0711669921875,
+        "min_f0": 141.42135620117188,
+        "max_f0": 186.60659790039062
+      }
+    },
+    {
+      "utt_id": "arctic_a0513",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0513_target.npy",
+      "rms": 0.06008148565888405,
+      "f0_stats": {
+        "mean_f0": 171.75115966796875,
+        "std_f0": 14.06361198425293,
+        "min_f0": 149.83070373535156,
+        "max_f0": 209.45883178710938
+      }
+    },
+    {
+      "utt_id": "arctic_a0471",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0471_source.npy",
+      "rms": 0.05231541767716408,
+      "f0_stats": {
+        "mean_f0": 149.1439666748047,
+        "std_f0": 15.478562355041504,
+        "min_f0": 118.92070770263672,
+        "max_f0": 164.3380584716797
+      }
+    },
+    {
+      "utt_id": "arctic_a0471",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0471_target.npy",
+      "rms": 0.04458780959248543,
+      "f0_stats": {
+        "mean_f0": 171.50987243652344,
+        "std_f0": 16.41797637939453,
+        "min_f0": 131.95079040527344,
+        "max_f0": 202.32388305664062
+      }
+    },
+    {
+      "utt_id": "arctic_a0369",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0369_source.npy",
+      "rms": 0.05584646388888359,
+      "f0_stats": {
+        "mean_f0": 130.6925506591797,
+        "std_f0": 17.376306533813477,
+        "min_f0": 101.16194152832031,
+        "max_f0": 156.01304626464844
+      }
+    },
+    {
+      "utt_id": "arctic_a0369",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0369_target.npy",
+      "rms": 0.047959353774785995,
+      "f0_stats": {
+        "mean_f0": 168.26112365722656,
+        "std_f0": 18.775142669677734,
+        "min_f0": 135.0349884033203,
+        "max_f0": 215.596435546875
+      }
+    },
+    {
+      "utt_id": "arctic_a0186",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0186_source.npy",
+      "rms": 0.045797087252140045,
+      "f0_stats": {
+        "mean_f0": 135.7377471923828,
+        "std_f0": 2.964918613433838,
+        "min_f0": 129.6839599609375,
+        "max_f0": 140.60682678222656
+      }
+    },
+    {
+      "utt_id": "arctic_a0186",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0186_target.npy",
+      "rms": 0.03838130459189415,
+      "f0_stats": {
+        "mean_f0": 170.39610290527344,
+        "std_f0": 12.762831687927246,
+        "min_f0": 150.69866943359375,
+        "max_f0": 210.67221069335938
+      }
+    },
+    {
+      "utt_id": "arctic_b0102",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0102_source.npy",
+      "rms": 0.051333654671907425,
+      "f0_stats": {
+        "mean_f0": 117.81649017333984,
+        "std_f0": 5.544449329376221,
+        "min_f0": 110.31787872314453,
+        "max_f0": 130.43521118164062
+      }
+    },
+    {
+      "utt_id": "arctic_b0102",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0102_target.npy",
+      "rms": 0.04819033667445183,
+      "f0_stats": {
+        "mean_f0": 186.43878173828125,
+        "std_f0": 10.287886619567871,
+        "min_f0": 165.29006958007812,
+        "max_f0": 208.25242614746094
+      }
+    },
+    {
+      "utt_id": "arctic_a0427",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0427_source.npy",
+      "rms": 0.058529358357191086,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_a0427",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0427_target.npy",
+      "rms": 0.07847469300031662,
+      "f0_stats": {
+        "mean_f0": 171.02200317382812,
+        "std_f0": 17.691762924194336,
+        "min_f0": 138.9918212890625,
+        "max_f0": 220.63575744628906
+      }
+    },
+    {
+      "utt_id": "arctic_a0591",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0591_source.npy",
+      "rms": 0.06013064458966255,
+      "f0_stats": {
+        "mean_f0": 146.94729614257812,
+        "std_f0": 13.467199325561523,
+        "min_f0": 127.45606231689453,
+        "max_f0": 172.11029052734375
+      }
+    },
+    {
+      "utt_id": "arctic_a0591",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_a0591_target.npy",
+      "rms": 0.05519605427980423,
+      "f0_stats": {
+        "mean_f0": 173.4405517578125,
+        "std_f0": 14.668400764465332,
+        "min_f0": 149.83070373535156,
+        "max_f0": 207.052978515625
+      }
+    },
+    {
+      "utt_id": "arctic_b0162",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0162_source.npy",
+      "rms": 0.06456281244754791,
+      "f0_stats": {
+        "mean_f0": 0.0,
+        "std_f0": 0.0,
+        "min_f0": 0.0,
+        "max_f0": 0.0
+      }
+    },
+    {
+      "utt_id": "arctic_b0162",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0162_target.npy",
+      "rms": 0.05563068389892578,
+      "f0_stats": {
+        "mean_f0": 183.46302795410156,
+        "std_f0": 20.773561477661133,
+        "min_f0": 153.3328399658203,
+        "max_f0": 229.7396697998047
+      }
+    },
+    {
+      "utt_id": "arctic_b0397",
+      "speaker": "source",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0397_source.npy",
+      "rms": 0.05672404170036316,
+      "f0_stats": {
+        "mean_f0": 119.18097686767578,
+        "std_f0": 6.218714237213135,
+        "min_f0": 109.6824951171875,
+        "max_f0": 133.48397827148438
+      }
+    },
+    {
+      "utt_id": "arctic_b0397",
+      "speaker": "target",
+      "cached_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache/preprocessed/test/arctic_b0397_target.npy",
+      "rms": 0.039380479604005814,
+      "f0_stats": {
+        "mean_f0": 170.94418334960938,
+        "std_f0": 14.882468223571777,
+        "min_f0": 148.96774291992188,
+        "max_f0": 216.84536743164062
+      }
+    }
+  ]
+}

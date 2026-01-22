@@ -1,3 +1,5 @@
 .venv
+*.pyc
 data
 *.bz2
+*.npy
