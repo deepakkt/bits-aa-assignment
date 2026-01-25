@@ -14,12 +14,16 @@ from .audio_preproc import (
     load_speaker_data,
     preprocess_audio,
 )
+from .alignment import align_features_dtw
 from .features import (
     calculate_pitch_shift_ratio,
     extract_f0,
     extract_formants,
     extract_mfcc,
 )
+from .mapping import convert_features, train_feature_mapping
+from .conversion import convert_spectral_envelope, shift_pitch
+from .metrics import mcd, calculate_f0correlation, calculate_formant_rmse
 
 __all__ = [
     "load_speaker_data",
@@ -30,6 +34,14 @@ __all__ = [
     "calculate_pitch_shift_ratio",
     "extract_mfcc",
     "extract_formants",
+    "align_features_dtw",
+    "train_feature_mapping",
+    "convert_features",
+    "shift_pitch",
+    "convert_spectral_envelope",
+    "mcd",
+    "calculate_f0correlation",
+    "calculate_formant_rmse",
 ]
 
 # Later parts will extend this namespace with feature extraction, alignment,

@@ -1,0 +1,8 @@
+{
+  "model_path": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/models/mfcc_linear_mapping.pkl",
+  "manifest": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/manifests/pair_manifest.json",
+  "cache_dir": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache",
+  "pairs": 40,
+  "total_aligned_frames": 7420,
+  "status": "ok"
+}
