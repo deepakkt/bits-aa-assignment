@@ -12,7 +12,7 @@ import numpy as np
 import librosa
 
 from .config import TARGET_SR
-from .features import HOP_LENGTH, N_FFT, extract_mfcc
+from .features import HOP_LENGTH, MEL_BANDS, N_FFT, extract_mfcc
 from .mapping import FeatureMappingModel, convert_features
 from .io_utils import get_logger
 
@@ -60,7 +60,13 @@ def _mfcc_to_linear_spectrogram(mfcc: np.ndarray, sr: int) -> np.ndarray:
     projection. While lossy, it provides a reasonable spectral envelope for
     Griffin-Lim reconstruction.
     """
-    mel_spec = librosa.feature.inverse.mfcc_to_mel(mfcc)
+    # Undo the mel-band scaling applied during extraction before inversion.
+    unscaled = np.asarray(mfcc, dtype=np.float32) * np.sqrt(MEL_BANDS)
+    log_mel = librosa.feature.inverse.mfcc_to_mel(
+        unscaled, n_mels=MEL_BANDS, dct_type=2, norm="ortho"
+    )
+    mel_spec = np.exp(log_mel)
+    mel_spec = np.clip(mel_spec, np.finfo(np.float32).eps, None)
     # mel_to_stft returns a linear magnitude matrix; power=1 for magnitude.
     linear_mag = librosa.feature.inverse.mel_to_stft(
         mel_spec, sr=sr, n_fft=N_FFT, power=1.0

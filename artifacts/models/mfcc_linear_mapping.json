@@ -3,6 +3,6 @@
   "manifest": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/manifests/pair_manifest.json",
   "cache_dir": "/Users/deepakkt/dev/python/bits-aa-assignment/artifacts/cache",
   "pairs": 40,
-  "total_aligned_frames": 7420,
+  "total_aligned_frames": 7428,
   "status": "ok"
 }

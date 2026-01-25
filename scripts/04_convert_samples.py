@@ -12,7 +12,7 @@ import argparse
 import pickle
 import sys
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 import numpy as np
 import soundfile as sf
@@ -33,6 +33,11 @@ from vc.features import HOP_LENGTH, N_FFT, calculate_pitch_shift_ratio  # noqa: 
 from vc.io_utils import ensure_dir, get_logger, load_json  # noqa: E402
 from vc.conversion import convert_spectral_envelope, shift_pitch  # noqa: E402
 from vc.mapping import FeatureMappingModel  # noqa: E402
+
+
+MIN_CONVERT_SEC = 2.0
+MAX_CONVERT_SEC = 10.0
+SILENCE_PAD_VALUE = 1e-4
 
 
 def parse_args() -> argparse.Namespace:
@@ -150,6 +155,59 @@ def convert_utterance(
     return converted, ratio
 
 
+def _entry_duration(entry: Dict[str, object]) -> float:
+    """
+    Prefer the longer of the parallel pair durations for ranking.
+    """
+    src = float(entry.get("source", {}).get("duration_sec", 0.0))
+    tgt = float(entry.get("target", {}).get("duration_sec", 0.0))
+    return max(src, tgt)
+
+
+def select_long_test_entries(test_entries: List[Dict[str, object]], num_samples: int) -> List[Dict]:
+    """
+    Select a deterministic subset of the longest test utterances.
+    """
+    ranked = sorted(test_entries, key=lambda e: (-_entry_duration(e), e.get("utt_id", "")))
+    return ranked[:num_samples]
+
+
+def enforce_duration_bounds(audio: np.ndarray, sr: int) -> np.ndarray:
+    """
+    Clip overly long outputs and pad short ones with low-level silence to land inside [2, 10] sec.
+    """
+    if sr != TARGET_SR:
+        raise ValueError(f"Expected sample rate {TARGET_SR}, got {sr}")
+    waveform = np.asarray(audio, dtype=np.float32).reshape(-1)
+    if waveform.size == 0:
+        waveform = np.zeros(1, dtype=np.float32)
+
+    waveform = np.nan_to_num(waveform, nan=0.0, posinf=0.0, neginf=0.0)
+    max_samples = int(MAX_CONVERT_SEC * sr)
+    min_samples = int(MIN_CONVERT_SEC * sr)
+    bounded = waveform[:max_samples]
+    if bounded.size < min_samples:
+        pad = np.full(min_samples - bounded.size, SILENCE_PAD_VALUE, dtype=np.float32)
+        bounded = np.concatenate([bounded, pad])
+    return np.clip(bounded, -1.0, 1.0).astype(np.float32)
+
+
+def is_output_valid(path: Path) -> bool:
+    """
+    Validate an existing WAV so idempotent runs can skip only when constraints are met.
+    """
+    if not path.exists():
+        return False
+    try:
+        info = sf.info(path)
+    except Exception:
+        return False
+    if info.samplerate != TARGET_SR or info.frames <= 0:
+        return False
+    duration = info.frames / info.samplerate if info.samplerate else 0.0
+    return MIN_CONVERT_SEC <= duration <= MAX_CONVERT_SEC
+
+
 def save_wav(audio: np.ndarray, path: Path) -> None:
     ensure_dir(path.parent)
     sf.write(path, audio, samplerate=TARGET_SR, subtype="PCM_16")
@@ -184,18 +242,27 @@ def main() -> None:
     ensure_dir(output_dir)
     logger.info("Converting %d test utterances.", args.num_samples)
 
-    for idx, entry in enumerate(test_entries[: args.num_samples], start=1):
+    selected_entries = select_long_test_entries(test_entries, args.num_samples)
+    logger.info(
+        "Selected utterances (longest-first): %s",
+        ", ".join(e["utt_id"] for e in selected_entries),
+    )
+
+    for idx, entry in enumerate(selected_entries, start=1):
         utt_id = entry["utt_id"]
         out_path = output_dir / f"converted_sample_{idx}.wav"
         if out_path.exists() and not args.force:
-            logger.info("Found existing %s; skipping (use --force to overwrite).", out_path.name)
-            continue
+            if is_output_valid(out_path):
+                logger.info("Found existing %s; skipping (use --force to overwrite).", out_path.name)
+                continue
+            logger.warning("Existing %s violates duration/SR constraints; regenerating.", out_path.name)
         try:
             audio, ratio = convert_utterance(utt_id, cache_dir, model, args.force, logger)
+            audio = enforce_duration_bounds(audio, TARGET_SR)
         except Exception as exc:  # noqa: BLE001
             logger.error("Conversion failed for %s: %s", utt_id, exc)
             # Write a short silent clip to maintain required outputs.
-            audio = np.zeros(TARGET_SR * 2, dtype=np.float32)
+            audio = np.full(int(MIN_CONVERT_SEC * TARGET_SR), SILENCE_PAD_VALUE, dtype=np.float32)
             ratio = 1.0
         save_wav(audio, out_path)
         logger.info("Wrote %s (pitch ratio %.3f)", out_path.name, ratio)

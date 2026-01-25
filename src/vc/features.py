@@ -17,6 +17,7 @@ logger = get_logger(__name__)
 # Shared analysis parameters to keep frame alignment consistent.
 HOP_LENGTH = 256
 N_FFT = 1024
+MEL_BANDS = 128
 PYIN_FRAME_LENGTH = 1024  # keeps a 4x hop stride; stable for 16 kHz speech
 LPC_ORDER = 16
 FORMANT_DEFAULTS = np.array([500.0, 1500.0, 2500.0], dtype=np.float32)
@@ -103,17 +104,29 @@ def extract_mfcc(audio: np.ndarray, sr: int, n_mfcc: int = MFCC_N) -> np.ndarray
     """
     if n_mfcc <= 0:
         raise ValueError(f"n_mfcc must be positive, got {n_mfcc}")
+    if n_mfcc > MEL_BANDS:
+        raise ValueError(f"n_mfcc ({n_mfcc}) cannot exceed mel bands ({MEL_BANDS})")
     audio = _validate_audio(audio, sr)
-    mfcc = librosa.feature.mfcc(
+    mel_spec = librosa.feature.melspectrogram(
         y=audio,
         sr=sr,
-        n_mfcc=n_mfcc,
         n_fft=N_FFT,
         hop_length=HOP_LENGTH,
         win_length=N_FFT,
-        center=False,  # keeps hop alignment consistent with pyin
-        htk=True,
+        center=False,
+        n_mels=MEL_BANDS,
+        power=2.0,
     )
+    # Natural log avoids the dB scaling blow-up that inflates MCD; floor to keep values finite.
+    log_mel = np.log(np.maximum(mel_spec, np.finfo(np.float32).eps))
+    mfcc = librosa.feature.mfcc(
+        S=log_mel,
+        n_mfcc=n_mfcc,
+        dct_type=2,
+        norm="ortho",
+    )
+    # Remove implicit sqrt(n_mels) scaling so MFCC magnitudes stay comparable across configs.
+    mfcc = mfcc / np.sqrt(MEL_BANDS)
     return mfcc.astype(np.float32)
 
 
@@ -178,6 +191,7 @@ __all__ = [
     "calculate_pitch_shift_ratio",
     "extract_mfcc",
     "extract_formants",
+    "MEL_BANDS",
     "HOP_LENGTH",
     "N_FFT",
 ]
