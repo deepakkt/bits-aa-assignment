@@ -1,0 +1,416 @@
+{
+  "source_speaker": "bdl",
+  "target_speaker": "slt",
+  "num_pairs": 50,
+  "train_pairs": 40,
+  "test_pairs": 10,
+  "data_root": "/Users/deepakkt/dev/python/bits-aa-assignment/data",
+  "pairs": [
+    {
+      "utt_id": "arctic_a0001",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0001.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0001.wav",
+      "split": "train",
+      "source_duration_sec": 3.235,
+      "target_duration_sec": 3.355
+    },
+    {
+      "utt_id": "arctic_a0002",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0002.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0002.wav",
+      "split": "train",
+      "source_duration_sec": 3.375,
+      "target_duration_sec": 3.755
+    },
+    {
+      "utt_id": "arctic_a0003",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0003.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0003.wav",
+      "split": "train",
+      "source_duration_sec": 3.365,
+      "target_duration_sec": 3.205
+    },
+    {
+      "utt_id": "arctic_a0004",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0004.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0004.wav",
+      "split": "train",
+      "source_duration_sec": 2.575,
+      "target_duration_sec": 2.505
+    },
+    {
+      "utt_id": "arctic_a0005",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0005.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0005.wav",
+      "split": "train",
+      "source_duration_sec": 1.295,
+      "target_duration_sec": 1.485
+    },
+    {
+      "utt_id": "arctic_a0006",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0006.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0006.wav",
+      "split": "train",
+      "source_duration_sec": 3.055,
+      "target_duration_sec": 2.965
+    },
+    {
+      "utt_id": "arctic_a0007",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0007.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0007.wav",
+      "split": "train",
+      "source_duration_sec": 3.025,
+      "target_duration_sec": 3.005
+    },
+    {
+      "utt_id": "arctic_a0008",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0008.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0008.wav",
+      "split": "train",
+      "source_duration_sec": 2.195,
+      "target_duration_sec": 2.285
+    },
+    {
+      "utt_id": "arctic_a0009",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0009.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0009.wav",
+      "split": "train",
+      "source_duration_sec": 3.205,
+      "target_duration_sec": 3.095
+    },
+    {
+      "utt_id": "arctic_a0010",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0010.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0010.wav",
+      "split": "train",
+      "source_duration_sec": 3.325,
+      "target_duration_sec": 3.015
+    },
+    {
+      "utt_id": "arctic_a0011",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0011.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0011.wav",
+      "split": "train",
+      "source_duration_sec": 3.115,
+      "target_duration_sec": 3.055
+    },
+    {
+      "utt_id": "arctic_a0012",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0012.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0012.wav",
+      "split": "train",
+      "source_duration_sec": 2.945,
+      "target_duration_sec": 2.835
+    },
+    {
+      "utt_id": "arctic_a0013",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0013.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0013.wav",
+      "split": "train",
+      "source_duration_sec": 4.205,
+      "target_duration_sec": 3.525
+    },
+    {
+      "utt_id": "arctic_a0014",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0014.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0014.wav",
+      "split": "train",
+      "source_duration_sec": 3.045,
+      "target_duration_sec": 2.895
+    },
+    {
+      "utt_id": "arctic_a0015",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0015.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0015.wav",
+      "split": "train",
+      "source_duration_sec": 1.835,
+      "target_duration_sec": 1.875
+    },
+    {
+      "utt_id": "arctic_a0016",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0016.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0016.wav",
+      "split": "train",
+      "source_duration_sec": 3.865,
+      "target_duration_sec": 3.575
+    },
+    {
+      "utt_id": "arctic_a0017",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0017.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0017.wav",
+      "split": "train",
+      "source_duration_sec": 4.025,
+      "target_duration_sec": 4.025
+    },
+    {
+      "utt_id": "arctic_a0018",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0018.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0018.wav",
+      "split": "train",
+      "source_duration_sec": 1.415,
+      "target_duration_sec": 1.605
+    },
+    {
+      "utt_id": "arctic_a0019",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0019.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0019.wav",
+      "split": "train",
+      "source_duration_sec": 3.775,
+      "target_duration_sec": 3.475
+    },
+    {
+      "utt_id": "arctic_a0020",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0020.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0020.wav",
+      "split": "train",
+      "source_duration_sec": 3.465,
+      "target_duration_sec": 3.115
+    },
+    {
+      "utt_id": "arctic_a0021",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0021.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0021.wav",
+      "split": "train",
+      "source_duration_sec": 2.485,
+      "target_duration_sec": 2.505
+    },
+    {
+      "utt_id": "arctic_a0022",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0022.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0022.wav",
+      "split": "train",
+      "source_duration_sec": 4.345,
+      "target_duration_sec": 4.305
+    },
+    {
+      "utt_id": "arctic_a0023",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0023.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0023.wav",
+      "split": "train",
+      "source_duration_sec": 5.255,
+      "target_duration_sec": 4.795
+    },
+    {
+      "utt_id": "arctic_a0024",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0024.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0024.wav",
+      "split": "train",
+      "source_duration_sec": 3.865,
+      "target_duration_sec": 3.955
+    },
+    {
+      "utt_id": "arctic_a0025",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0025.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0025.wav",
+      "split": "train",
+      "source_duration_sec": 3.145,
+      "target_duration_sec": 3.095
+    },
+    {
+      "utt_id": "arctic_a0026",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0026.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0026.wav",
+      "split": "train",
+      "source_duration_sec": 2.735,
+      "target_duration_sec": 2.885
+    },
+    {
+      "utt_id": "arctic_a0027",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0027.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0027.wav",
+      "split": "train",
+      "source_duration_sec": 4.115,
+      "target_duration_sec": 4.095
+    },
+    {
+      "utt_id": "arctic_a0028",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0028.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0028.wav",
+      "split": "train",
+      "source_duration_sec": 2.125,
+      "target_duration_sec": 2.395
+    },
+    {
+      "utt_id": "arctic_a0029",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0029.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0029.wav",
+      "split": "train",
+      "source_duration_sec": 2.955,
+      "target_duration_sec": 3.085
+    },
+    {
+      "utt_id": "arctic_a0030",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0030.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0030.wav",
+      "split": "train",
+      "source_duration_sec": 1.285,
+      "target_duration_sec": 1.475
+    },
+    {
+      "utt_id": "arctic_a0031",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0031.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0031.wav",
+      "split": "train",
+      "source_duration_sec": 1.805,
+      "target_duration_sec": 2.015
+    },
+    {
+      "utt_id": "arctic_a0032",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0032.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0032.wav",
+      "split": "train",
+      "source_duration_sec": 3.935,
+      "target_duration_sec": 3.735
+    },
+    {
+      "utt_id": "arctic_a0033",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0033.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0033.wav",
+      "split": "train",
+      "source_duration_sec": 3.645,
+      "target_duration_sec": 3.675
+    },
+    {
+      "utt_id": "arctic_a0034",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0034.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0034.wav",
+      "split": "train",
+      "source_duration_sec": 3.175,
+      "target_duration_sec": 3.255
+    },
+    {
+      "utt_id": "arctic_a0035",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0035.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0035.wav",
+      "split": "train",
+      "source_duration_sec": 3.735,
+      "target_duration_sec": 3.735
+    },
+    {
+      "utt_id": "arctic_a0036",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0036.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0036.wav",
+      "split": "train",
+      "source_duration_sec": 1.665,
+      "target_duration_sec": 1.805
+    },
+    {
+      "utt_id": "arctic_a0037",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0037.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0037.wav",
+      "split": "train",
+      "source_duration_sec": 2.045,
+      "target_duration_sec": 2.405
+    },
+    {
+      "utt_id": "arctic_a0038",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0038.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0038.wav",
+      "split": "train",
+      "source_duration_sec": 1.755,
+      "target_duration_sec": 1.865
+    },
+    {
+      "utt_id": "arctic_a0039",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0039.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0039.wav",
+      "split": "train",
+      "source_duration_sec": 2.665,
+      "target_duration_sec": 2.675
+    },
+    {
+      "utt_id": "arctic_a0040",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0040.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0040.wav",
+      "split": "train",
+      "source_duration_sec": 2.445,
+      "target_duration_sec": 2.625
+    },
+    {
+      "utt_id": "arctic_a0041",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0041.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0041.wav",
+      "split": "test",
+      "source_duration_sec": 2.225,
+      "target_duration_sec": 2.385
+    },
+    {
+      "utt_id": "arctic_a0042",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0042.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0042.wav",
+      "split": "test",
+      "source_duration_sec": 2.575,
+      "target_duration_sec": 2.765
+    },
+    {
+      "utt_id": "arctic_a0043",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0043.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0043.wav",
+      "split": "test",
+      "source_duration_sec": 3.645,
+      "target_duration_sec": 3.465
+    },
+    {
+      "utt_id": "arctic_a0044",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0044.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0044.wav",
+      "split": "test",
+      "source_duration_sec": 3.005,
+      "target_duration_sec": 3.065
+    },
+    {
+      "utt_id": "arctic_a0045",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0045.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0045.wav",
+      "split": "test",
+      "source_duration_sec": 2.465,
+      "target_duration_sec": 2.555
+    },
+    {
+      "utt_id": "arctic_a0046",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0046.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0046.wav",
+      "split": "test",
+      "source_duration_sec": 3.025,
+      "target_duration_sec": 3.335
+    },
+    {
+      "utt_id": "arctic_a0047",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0047.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0047.wav",
+      "split": "test",
+      "source_duration_sec": 3.175,
+      "target_duration_sec": 3.235
+    },
+    {
+      "utt_id": "arctic_a0048",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0048.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0048.wav",
+      "split": "test",
+      "source_duration_sec": 2.475,
+      "target_duration_sec": 2.565
+    },
+    {
+      "utt_id": "arctic_a0049",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0049.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0049.wav",
+      "split": "test",
+      "source_duration_sec": 2.685,
+      "target_duration_sec": 2.755
+    },
+    {
+      "utt_id": "arctic_a0050",
+      "source_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_bdl_arctic/wav/arctic_a0050.wav",
+      "target_path": "/Users/deepakkt/dev/python/bits-aa-assignment/data/cmu_us_slt_arctic/wav/arctic_a0050.wav",
+      "split": "test",
+      "source_duration_sec": 3.725,
+      "target_duration_sec": 3.715
+    }
+  ],
+  "stats": {
+    "source_total_duration_sec": 148.522,
+    "target_total_duration_sec": 148.872,
+    "train_duration_sec": 119.522,
+    "test_duration_sec": 29.001
+  }
+}

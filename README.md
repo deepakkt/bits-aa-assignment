@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; only Part 1 (environment + skeleton) is complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–2 are complete in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -8,8 +8,8 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
    python3.11 -m venv .venv
    source .venv/bin/activate
    pip install --upgrade pip
-pip install -r requirements.txt
-```
+   pip install -r requirements.txt
+   ```
 2) (Optional) ensure project is on the module path when running scripts:
    ```bash
    export PYTHONPATH=src
@@ -18,12 +18,12 @@ pip install -r requirements.txt
 ## Repository layout
 - `requirements.txt` pinned dependencies for Python 3.11.
 - `src/vc/` package skeleton with shared config and I/O helpers.
-- `scripts/01_prepare_dataset.py` .. `scripts/06_self_check.py`: placeholders for upcoming parts.
+- `scripts/01_prepare_dataset.py` .. `scripts/06_self_check.py`: staged pipeline; 01 is implemented for Part 2.
 - `artifacts/` (manifests, cache, models, outputs) and `data/` directories are pre-created for determinism.
 - `notebooks/` reserved for the final submission notebook.
 
 ## Run order (will be filled as parts land)
-1. `python scripts/01_prepare_dataset.py`  # Part 2 (pending)
+1. `python scripts/01_prepare_dataset.py`  # Part 2 (dataset + manifest) — implemented
 2. `python scripts/02_precompute_features.py`  # Part 4 (pending)
 3. `python scripts/03_train_mapping.py`  # Part 5 (pending)
 4. `python scripts/04_convert_samples.py`  # Part 7 (pending)
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## Part status checklist
 - [x] Part-1: Environment, dependencies, skeleton
-- [ ] Part-2: Dataset preparation + deterministic manifest
+- [x] Part-2: Dataset preparation + deterministic manifest
 - [ ] Part-3: Preprocessing functions
 - [ ] Part-4: Feature extraction + caching
 - [ ] Part-5: Alignment + mapping
@@ -52,6 +52,31 @@ print('Imports OK; TARGET_SR=', config.TARGET_SR)
 PY
 ```
 Expected: a short confirmation line and no ImportError.
+
+### Part 2: dataset + manifest
+Dataset placement (manual, recommended):
+- Place CMU Arctic tarballs under `data/`, e.g. `data/cmu_us_bdl_arctic-0.95-release.tar.bz2` and `data/cmu_us_slt_arctic-0.95-release.tar.bz2`.
+- Alternatively extract them to `data/cmu_us_bdl_arctic/` and `data/cmu_us_slt_arctic/` yourself. The script is idempotent and will reuse existing extractions.
+
+Run Part 2 (bdl -> slt default):
+```bash
+python scripts/01_prepare_dataset.py
+# optional: override speakers or paths
+# python scripts/01_prepare_dataset.py --source bdl --target slt --data-root data --manifest-out artifacts/manifests/pair_manifest.json --force
+```
+Expected outputs:
+- `artifacts/manifests/pair_manifest.json` with 50 parallel utterances (train=40, test=10), absolute paths, and duration stats.
+- Log lines showing file counts and train/test duration summary.
+
+Quick check:
+```bash
+python - <<'PY'
+import json, pathlib
+manifest = json.loads(pathlib.Path("artifacts/manifests/pair_manifest.json").read_text())
+print(manifest["num_pairs"], "pairs;", manifest["train_pairs"], "train;", manifest["test_pairs"], "test")
+print("First pair IDs:", manifest["pairs"][0]["utt_id"])
+PY
+```
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.

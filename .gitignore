@@ -35,3 +35,4 @@ artifacts/outputs/
 
 # Large/local data
 data/
+*.wav
