@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 2) (Optional) ensure project is on the module path when running scripts:
    ```bash
-   export PYTHONPATH=.
+   export PYTHONPATH=src
    ```
 
 ## Repository layout
