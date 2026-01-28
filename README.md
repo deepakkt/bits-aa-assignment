@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–2 are complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–4 are complete in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -24,7 +24,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 
 ## Run order (will be filled as parts land)
 1. `python scripts/01_prepare_dataset.py`  # Part 2 (dataset + manifest) — implemented
-2. `python scripts/02_precompute_features.py`  # Part 4 (pending)
+2. `python scripts/02_precompute_features.py`  # Part 4 (feature caching) — implemented
 3. `python scripts/03_train_mapping.py`  # Part 5 (pending)
 4. `python scripts/04_convert_samples.py`  # Part 7 (pending)
 5. `python scripts/05_evaluate.py`  # Part 8 (pending)
@@ -34,7 +34,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-1: Environment, dependencies, skeleton
 - [x] Part-2: Dataset preparation + deterministic manifest
 - [x] Part-3: Preprocessing functions
-- [ ] Part-4: Feature extraction + caching
+- [x] Part-4: Feature extraction + caching
 - [ ] Part-5: Alignment + mapping
 - [ ] Part-6: Pitch modification
 - [ ] Part-7: Spectral conversion + pipeline
@@ -100,6 +100,32 @@ assert np.max(np.abs(proc)) <= 1.01
 PY
 ```
 Expected: new_sr == 16000, RMS > 0 for voiced files, F0 stats with finite numbers (0 if unvoiced).
+
+### Part 4: feature extraction + caching (F0, MFCC, formants)
+Run feature precomputation (uses the manifest from Part 2):
+```bash
+python scripts/02_precompute_features.py
+# optional: change cache location or recompute
+# python scripts/02_precompute_features.py --cache-dir artifacts/cache/features --force
+```
+Expected outputs:
+- Cached feature files under `artifacts/cache/features/<split>/<speaker>/<utt_id>.npz`
+- `artifacts/cache/features/index.json` summarizing all cached entries
+
+Quick check (after running the script):
+```bash
+PYTHONPATH=src python - <<'PY'
+import json, pathlib, numpy as np
+from pathlib import Path
+
+index = json.loads(Path("artifacts/cache/features/index.json").read_text())
+print("entries", index["total_entries"], "computed", index["computed"])
+one = Path(index["entries"][0]["cache_path"])
+with np.load(one, allow_pickle=False) as npz:
+    print("mfcc shape", npz["mfcc"].shape, "f0 len", npz["f0"].shape[0], "formants", npz["formants"])
+PY
+```
+Expected: 100 entries (source + target for 50 pairs); MFCC shape `(13, T>0)`; F0 length > 0 with some NaNs for unvoiced; formants finite and ascending.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.

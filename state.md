@@ -6,7 +6,7 @@ This file captures the current implementation state to speed up future parts.
 - [x] Part 1: Env/deps/skeleton
 - [x] Part 2: Dataset prep + manifest (bdl -> slt, CMU Arctic)
 - [x] Part 3: Preprocessing functions (load, resample->normalize->preemphasize, RMS, F0 stats)
-- [ ] Part 4: Feature extraction + caching
+- [x] Part 4: Feature extraction + caching
 - [ ] Part 5: Alignment + mapping
 - [ ] Part 6: Pitch modification
 - [ ] Part 7: Spectral conversion + pipeline
@@ -25,15 +25,18 @@ This file captures the current implementation state to speed up future parts.
 - `src/vc/config.py`: paths/constants + `ensure_directories()`.
 - `src/vc/io_utils.py`: list/load/save audio helpers.
 - `src/vc/audio_preproc.py`: Part A logic (load_speaker_data, preprocess_audio, compute_f0_stats, compute_rms_energy) with silence trim, resample, normalize, pre-emphasis.
-- `src/vc/assignment_api.py`: exposes Part A functions; Parts B–D stubs raise NotImplementedError.
-- `src/vc/__init__.py`: exports config, io_utils, audio_preproc, assignment_api.
+- `src/vc/features.py`: Part B feature extractors (F0 via pyin fallback to yin, MFCC, LPC formants) + pitch shift ratio helper.
+- `src/vc/assignment_api.py`: exposes Parts A–B functions (feature stubs replaced with implementations); Parts C–D stubs still raise NotImplementedError.
+- `src/vc/__init__.py`: exports config, io_utils, audio_preproc, features, assignment_api.
 
 ## Scripts status
 - `scripts/01_prepare_dataset.py`: implemented; builds deterministic 50-pair manifest (40 train / 10 test) under `artifacts/manifests/pair_manifest.json`; idempotent; optional `--download`.
-- `scripts/02_precompute_features.py` .. `06_self_check.py`: placeholders pending future parts.
+- `scripts/02_precompute_features.py`: implemented; caches F0/MFCC/formants per utterance into `artifacts/cache/features/...`, idempotent with `--force`.
+- `scripts/03_train_mapping.py` .. `06_self_check.py`: placeholders pending future parts.
 
 ## Current run order
 1. `python scripts/01_prepare_dataset.py`  # regenerates manifest if missing (use `--force` to overwrite)
+2. `python scripts/02_precompute_features.py`  # caches F0/MFCC/formants (use `--force` to recompute)
 
 ## Quick smoke test (Part 3)
 ```bash
@@ -56,5 +59,5 @@ PY
 ```
 
 ## Pending next steps
-- Implement Part 4 feature extractors in `src/vc/features.py` and wire into `assignment_api.py`; add caching script `02_precompute_features.py`.
+- Implement alignment + mapping (Part 5) using cached features; update scripts/03_train_mapping.py.
 - Keep README.md updated as parts land; ensure idempotent `--force` flags on new scripts.

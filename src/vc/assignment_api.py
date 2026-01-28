@@ -7,11 +7,9 @@ explicit. Part A functions are fully implemented here by delegating to
 """
 from __future__ import annotations
 
-from typing import Tuple
-
 import numpy as np
 
-from vc import audio_preproc
+from vc import audio_preproc, features
 
 
 # -----------------------------------------------------------------------------
@@ -66,22 +64,22 @@ def compute_rms_energy(audio: np.ndarray) -> float:
 
 
 # -----------------------------------------------------------------------------
-# Part B - Feature Extraction (stubs for now)
+# Part B - Feature Extraction
 # -----------------------------------------------------------------------------
 def extract_f0(audio: np.ndarray, sr: int) -> np.ndarray:
-    raise NotImplementedError("Part B not yet implemented")
+    return features.extract_f0(audio, sr)
 
 
 def extract_mfcc(audio: np.ndarray, sr: int, n_mfcc: int = 13) -> np.ndarray:
-    raise NotImplementedError("Part B not yet implemented")
+    return features.extract_mfcc(audio, sr, n_mfcc=n_mfcc)
 
 
 def extract_formants(audio: np.ndarray, sr: int) -> np.ndarray:
-    raise NotImplementedError("Part B not yet implemented")
+    return features.extract_formants(audio, sr)
 
 
 def calculate_pitch_shift_ratio(source_f0: np.ndarray, target_f0: np.ndarray) -> float:
-    raise NotImplementedError("Part B not yet implemented")
+    return features.calculate_pitch_shift_ratio(source_f0, target_f0)
 
 
 def align_features_dtw(source_features: np.ndarray, target_features: np.ndarray) -> np.ndarray:
@@ -126,4 +124,3 @@ def calculate_f0_correlation(converted_f0: np.ndarray, target_f0: np.ndarray) ->
 
 def calculate_formant_rmse(converted_formants: np.ndarray, target_formants: np.ndarray) -> float:
     raise NotImplementedError("Part D not yet implemented")
-
