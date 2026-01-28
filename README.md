@@ -33,7 +33,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 ## Part status checklist
 - [x] Part-1: Environment, dependencies, skeleton
 - [x] Part-2: Dataset preparation + deterministic manifest
-- [ ] Part-3: Preprocessing functions
+- [x] Part-3: Preprocessing functions
 - [ ] Part-4: Feature extraction + caching
 - [ ] Part-5: Alignment + mapping
 - [ ] Part-6: Pitch modification
@@ -77,6 +77,29 @@ print(manifest["num_pairs"], "pairs;", manifest["train_pairs"], "train;", manife
 print("First pair IDs:", manifest["pairs"][0]["utt_id"])
 PY
 ```
+
+### Part 3: preprocessing functions (load, resample->normalize->preemphasize, RMS, F0 stats)
+Run a quick smoke test on the first source utterance:
+```bash
+python - <<'PY'
+import json, pathlib
+import soundfile as sf
+import numpy as np
+from vc import assignment_api as api, config
+
+manifest = json.loads(pathlib.Path("artifacts/manifests/pair_manifest.json").read_text())
+first = manifest["pairs"][0]["source_path"]
+audio, sr = sf.read(first)
+proc, new_sr = api.preprocess_audio(audio, sr)
+print("orig_sr", sr, "new_sr", new_sr, "len", len(proc))
+print("rms", api.compute_rms_energy(proc))
+stats = api.compute_f0_stats(proc, new_sr)
+print("f0 stats", stats)
+assert new_sr == config.TARGET_SR
+assert np.max(np.abs(proc)) <= 1.01
+PY
+```
+Expected: new_sr == 16000, RMS > 0 for voiced files, F0 stats with finite numbers (0 if unvoiced).
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.
