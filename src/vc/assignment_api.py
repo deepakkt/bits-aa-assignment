@@ -102,13 +102,13 @@ def shift_pitch(audio: np.ndarray, sr: int, pitch_ratio: float) -> np.ndarray:
 
 
 def convert_spectral_envelope(audio: np.ndarray, sr: int, mapping_model) -> np.ndarray:
-    raise NotImplementedError("Part C not yet implemented")
+    return conversion.convert_spectral_envelope(audio, sr, mapping_model)
 
 
 def voice_conversion_pipeline(
     source_audio: np.ndarray, sr: int, mapping_model, pitch_ratio: float
 ) -> np.ndarray:
-    raise NotImplementedError("Part C not yet implemented")
+    return conversion.voice_conversion_pipeline(source_audio, sr, mapping_model, pitch_ratio)
 
 
 # -----------------------------------------------------------------------------

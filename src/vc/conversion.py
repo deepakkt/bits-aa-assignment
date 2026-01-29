@@ -12,12 +12,12 @@ Design goals for `shift_pitch`:
 from __future__ import annotations
 
 import logging
-from typing import Tuple
 
 import librosa
 import numpy as np
+from scipy.signal import lfilter
 
-from vc import config
+from vc import audio_preproc, config, features
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +46,15 @@ def _match_length(audio: np.ndarray, target_len: int) -> np.ndarray:
         return audio[:target_len]
     pad = target_len - audio.size
     return np.pad(audio, (0, pad))
+
+
+def _de_emphasize(audio: np.ndarray, coeff: float) -> np.ndarray:
+    """Undo pre-emphasis with a simple inverse filter."""
+
+    if audio.size == 0:
+        return audio.astype(np.float32)
+    restored = lfilter([1.0], [1.0, -float(coeff)], audio)
+    return restored.astype(np.float32)
 
 
 # -----------------------------------------------------------------------------
@@ -126,15 +135,113 @@ def shift_pitch(audio: np.ndarray, sr: int, pitch_ratio: float) -> np.ndarray:
 
 
 def convert_spectral_envelope(audio: np.ndarray, sr: int, mapping_model) -> np.ndarray:
-    """Placeholder for Part 7 spectral envelope conversion."""
+    """Convert spectral envelope using a trained MFCC mapping model.
 
-    raise NotImplementedError("Spectral conversion will be implemented in Part 7")
+    Steps:
+    1) Preprocess the input (resample, normalize, pre-emphasize).
+    2) Extract MFCCs.
+    3) Map source MFCCs to target space via the provided model.
+    4) Reconstruct waveform with Griffin-Lim and remove pre-emphasis.
+
+    The function is defensive against empty inputs and model failures.
+    """
+
+    if sr <= 0:
+        raise ValueError("Sample rate must be positive")
+
+    audio = _sanitize_audio(audio)
+    if audio.size == 0:
+        return np.zeros(0, dtype=np.float32)
+
+    # Preprocess to target sampling rate / emphasis domain
+    proc_audio, proc_sr = audio_preproc.preprocess_audio(audio, sr)
+    if proc_audio.size == 0:
+        return np.zeros(0, dtype=np.float32)
+
+    # Feature extraction
+    mfcc = features.extract_mfcc(proc_audio, proc_sr, n_mfcc=config.MFCC_N)
+
+    # Apply mapping if available; fall back gracefully
+    converted_mfcc = mfcc
+    if mapping_model is not None:
+        try:
+            if hasattr(mapping_model, "predict"):
+                converted_mfcc = mapping_model.predict(mfcc)
+            else:  # pragma: no cover - unlikely alt API
+                converted_mfcc = mapping_model(mfcc)
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.warning("Mapping model failed (%s); using source MFCCs", exc)
+            converted_mfcc = mfcc
+
+    converted_mfcc = np.nan_to_num(converted_mfcc, nan=0.0, posinf=0.0, neginf=0.0).astype(
+        np.float32
+    )
+
+    n_fft = 1024
+    hop_length = 256
+    try:
+        recon = librosa.feature.inverse.mfcc_to_audio(
+            converted_mfcc,
+            sr=proc_sr,
+            n_fft=n_fft,
+            hop_length=hop_length,
+            window="hann",
+            center=True,
+            n_mels=128,
+            dct_type=2,
+            norm="ortho",
+            ref=1.0,
+            n_iter=32,
+        )
+    except Exception as exc:  # pragma: no cover - rare numeric failure
+        logger.warning("mfcc_to_audio failed (%s); using mel->audio fallback", exc)
+        mel = librosa.feature.inverse.mfcc_to_mel(
+            converted_mfcc, n_mels=128, dct_type=2, norm="ortho", ref=1.0
+        )
+        recon = librosa.feature.inverse.mel_to_audio(
+            mel,
+            sr=proc_sr,
+            n_fft=n_fft,
+            hop_length=hop_length,
+            window="hann",
+            center=True,
+            power=1.0,
+            n_iter=32,
+        )
+
+    recon = np.nan_to_num(recon, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+    recon = _match_length(recon, proc_audio.shape[0])
+    recon = _de_emphasize(recon, config.PREEMPH)
+
+    # Final safety normalization
+    max_abs = float(np.max(np.abs(recon))) if recon.size else 0.0
+    if max_abs > 1.0 and max_abs > 0:
+        recon = recon / max_abs
+
+    return recon.astype(np.float32)
 
 
 def voice_conversion_pipeline(
     source_audio: np.ndarray, sr: int, mapping_model, pitch_ratio: float
 ) -> np.ndarray:
-    """Placeholder for Part 7 full voice conversion pipeline."""
+    """Full voice conversion: spectral envelope mapping + pitch shift."""
 
-    raise NotImplementedError("Voice conversion pipeline will be implemented in Part 7")
+    if sr <= 0:
+        raise ValueError("Sample rate must be positive")
 
+    spectral_audio = convert_spectral_envelope(source_audio, sr, mapping_model)
+    if spectral_audio.size == 0:
+        return spectral_audio
+
+    ratio = pitch_ratio
+    if ratio is None or not np.isfinite(ratio):
+        ratio = 1.0
+
+    converted = shift_pitch(spectral_audio, config.TARGET_SR, ratio)
+    converted = np.nan_to_num(converted, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+
+    max_abs = float(np.max(np.abs(converted))) if converted.size else 0.0
+    if max_abs > 1.0 and max_abs > 0:
+        converted = converted / max_abs
+
+    return converted.astype(np.float32)

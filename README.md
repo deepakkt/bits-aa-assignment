@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–6 are complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–7 are complete in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -26,7 +26,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 1. `python scripts/01_prepare_dataset.py`  # Part 2 (dataset + manifest) — implemented
 2. `python scripts/02_precompute_features.py`  # Part 4 (feature caching) — implemented
 3. `python scripts/03_train_mapping.py`  # Part 5 (alignment + mapping) — implemented
-4. `python scripts/04_convert_samples.py`  # Part 7 (pending)
+4. `python scripts/04_convert_samples.py`  # Part 7 (conversion pipeline)
 5. `python scripts/05_evaluate.py`  # Part 8 (pending)
 6. `python scripts/06_self_check.py`  # Part 10 (pending)
 
@@ -37,7 +37,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-4: Feature extraction + caching
 - [x] Part-5: Alignment + mapping
 - [x] Part-6: Pitch modification
-- [ ] Part-7: Spectral conversion + pipeline
+- [x] Part-7: Spectral conversion + pipeline
 - [ ] Part-8: Metrics + evaluation JSON
 - [ ] Part-9: Notebook + report
 - [ ] Part-10: Self-check harness
@@ -182,6 +182,27 @@ print("low/high rms", float(np.sqrt(np.mean(low**2))), float(np.sqrt(np.mean(hig
 PY
 ```
 Expected: lengths match exactly; max amplitude <= 1; RMS of `low` and `high` non-zero (not silence). Duration differences, if any, should be <10%.
+
+### Part 7: spectral conversion + pipeline
+Convert the held-out split (default: test) using the trained mapping model:
+```bash
+python scripts/04_convert_samples.py
+# options: --split train|test|all --limit N --force
+```
+Expected outputs:
+- Waveforms under `artifacts/outputs/converted/<utt_id>_converted.wav`
+- `artifacts/outputs/converted/conversion_manifest.json` summarizing split, pitch ratios, and model metadata
+
+Quick check after running:
+```bash
+python - <<'PY'
+import json, pathlib
+root = pathlib.Path("artifacts/outputs/converted")
+meta = json.loads((root / "conversion_manifest.json").read_text())
+print(meta["converted"], "converted;", meta["skipped"], "skipped; example file exists:", (root / (meta["items"][0]["utt_id"] + "_converted.wav")).exists())
+PY
+```
+Expected: 10 converted (test split) and non-empty output files.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.
