@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from vc import audio_preproc, features, alignment, mapping
+from vc import audio_preproc, features, alignment, mapping, conversion
 
 
 # -----------------------------------------------------------------------------
@@ -98,7 +98,7 @@ def convert_features(model, source_features: np.ndarray) -> np.ndarray:
 # Part C - Voice Conversion (stubs)
 # -----------------------------------------------------------------------------
 def shift_pitch(audio: np.ndarray, sr: int, pitch_ratio: float) -> np.ndarray:
-    raise NotImplementedError("Part C not yet implemented")
+    return conversion.shift_pitch(audio, sr, pitch_ratio)
 
 
 def convert_spectral_envelope(audio: np.ndarray, sr: int, mapping_model) -> np.ndarray:

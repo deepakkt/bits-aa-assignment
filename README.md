@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–5 are complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–6 are complete in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -36,7 +36,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-3: Preprocessing functions
 - [x] Part-4: Feature extraction + caching
 - [x] Part-5: Alignment + mapping
-- [ ] Part-6: Pitch modification
+- [x] Part-6: Pitch modification
 - [ ] Part-7: Spectral conversion + pipeline
 - [ ] Part-8: Metrics + evaluation JSON
 - [ ] Part-9: Notebook + report
@@ -159,6 +159,29 @@ print("converted shape", converted.shape)
 PY
 ```
 Expected: feature_dim == 13, reasonable aligned path length, converted MFCC shape `(13, frames_aligned)` with finite values.
+
+### Part 6: pitch modification (shift_pitch)
+This part adds the `vc.conversion.shift_pitch` implementation and exposes it via `vc.assignment_api.shift_pitch`. A quick smoke test (no audio files required):
+```bash
+PYTHONPATH=src python - <<'PY'
+import numpy as np
+from vc import assignment_api as api
+
+sr = 16000
+t = np.arange(sr)
+tone = np.sin(2*np.pi*220*t/sr).astype(np.float32)  # 1s @ 220 Hz
+
+shifted = api.shift_pitch(tone, sr, 1.5)  # up a perfect fifth
+print("len in/out", len(tone), len(shifted))
+print("max abs", float(np.max(np.abs(shifted))))
+
+# ratio bounds clamp to [0.5, 2.0]
+low = api.shift_pitch(tone, sr, 0.1)
+high = api.shift_pitch(tone, sr, 3.0)
+print("low/high rms", float(np.sqrt(np.mean(low**2))), float(np.sqrt(np.mean(high**2))))
+PY
+```
+Expected: lengths match exactly; max amplitude <= 1; RMS of `low` and `high` non-zero (not silence). Duration differences, if any, should be <10%.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.

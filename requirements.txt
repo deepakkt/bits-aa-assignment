@@ -10,3 +10,5 @@ numba==0.58.1
 llvmlite==0.41.1
 # fastdtw 0.3.4 is the latest version published; pure-Python and works on Py3.11
 fastdtw==0.3.4
+# librosa 0.10.x relies on resampy for high-quality resampling
+resampy==0.4.3

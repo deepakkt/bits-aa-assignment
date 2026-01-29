@@ -8,7 +8,7 @@ This file captures the current implementation state to speed up future parts.
 - [x] Part 3: Preprocessing functions (load, resample->normalize->preemphasize, RMS, F0 stats)
 - [x] Part 4: Feature extraction + caching
 - [x] Part 5: Alignment + mapping (DTW + linear regression)
-- [ ] Part 6: Pitch modification
+- [x] Part 6: Pitch modification
 - [ ] Part 7: Spectral conversion + pipeline
 - [ ] Part 8: Metrics + evaluation JSON
 - [ ] Part 9: Notebook + report
@@ -28,7 +28,8 @@ This file captures the current implementation state to speed up future parts.
 - `src/vc/features.py`: Part B feature extractors (F0 via pyin fallback to yin, MFCC, LPC formants) + pitch shift ratio helper.
 - `src/vc/alignment.py`: DTW alignment using fastdtw, returns path indices.
 - `src/vc/mapping.py`: LinearRegression-based FeatureMappingModel + predict/convert helpers.
-- `src/vc/assignment_api.py`: exposes Parts A–B functions plus DTW + mapping; Parts C–D stubs still raise NotImplementedError.
+- `src/vc/conversion.py`: Part C pitch shifting implementation (ratio clamp, duration preservation, fallback when librosa fails).
+- `src/vc/assignment_api.py`: exposes Parts A–B, DTW, mapping, and Part C `shift_pitch`; remaining Part C/D functions still stubbed.
 - `src/vc/__init__.py`: exports config, io_utils, audio_preproc, features, assignment_api.
 
 ## Scripts status
@@ -84,5 +85,8 @@ PY
 ```
 
 ## Pending next steps
-- Implement pitch shifting (Part 6) and integrate into conversion pipeline.
+- Implement spectral conversion + full pipeline (Part 7), metrics + evaluation JSON (Part 8), notebook/report (Part 9), self-check (Part 10).
+
+## Dependency note
+- Added `resampy==0.4.3` to requirements to satisfy librosa pitch shifting backend.
 - Extend conversion + evaluation scripts once mapping is stable; keep README.md updated with commands and artifacts.
