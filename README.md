@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–4 are complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–5 are complete in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -22,10 +22,10 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - `artifacts/` (manifests, cache, models, outputs) and `data/` directories are pre-created for determinism.
 - `notebooks/` reserved for the final submission notebook.
 
-## Run order (will be filled as parts land)
+## Run order (updated as parts land)
 1. `python scripts/01_prepare_dataset.py`  # Part 2 (dataset + manifest) — implemented
 2. `python scripts/02_precompute_features.py`  # Part 4 (feature caching) — implemented
-3. `python scripts/03_train_mapping.py`  # Part 5 (pending)
+3. `python scripts/03_train_mapping.py`  # Part 5 (alignment + mapping) — implemented
 4. `python scripts/04_convert_samples.py`  # Part 7 (pending)
 5. `python scripts/05_evaluate.py`  # Part 8 (pending)
 6. `python scripts/06_self_check.py`  # Part 10 (pending)
@@ -35,7 +35,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-2: Dataset preparation + deterministic manifest
 - [x] Part-3: Preprocessing functions
 - [x] Part-4: Feature extraction + caching
-- [ ] Part-5: Alignment + mapping
+- [x] Part-5: Alignment + mapping
 - [ ] Part-6: Pitch modification
 - [ ] Part-7: Spectral conversion + pipeline
 - [ ] Part-8: Metrics + evaluation JSON
@@ -126,6 +126,39 @@ with np.load(one, allow_pickle=False) as npz:
 PY
 ```
 Expected: 100 entries (source + target for 50 pairs); MFCC shape `(13, T>0)`; F0 length > 0 with some NaNs for unvoiced; formants finite and ascending.
+
+### Part 5: alignment + mapping (DTW + linear regression)
+Train the MFCC mapping model (requires Part 4 cache):
+```bash
+python scripts/03_train_mapping.py
+# optional: override locations or retrain
+# python scripts/03_train_mapping.py --manifest artifacts/manifests/pair_manifest.json \\
+#   --cache-dir artifacts/cache/features --model-out artifacts/models/mapping_linear.joblib --force
+```
+Expected output:
+- `artifacts/models/mapping_linear.joblib` containing a pickled `FeatureMappingModel` and metadata.
+- Logs showing aligned frames and training MSE (on the aligned training set).
+
+Quick check (after training):
+```bash
+PYTHONPATH=src python - <<'PY'
+import joblib, numpy as np, pathlib, json
+from vc import assignment_api as api, config
+
+bundle = joblib.load(config.MODELS_DIR / "mapping_linear.joblib")
+model = bundle["model"]
+meta = bundle["metadata"]
+print("model feature_dim", model.feature_dim, "speakers", meta["source_speaker"], "->", meta["target_speaker"])
+manifest = json.loads(pathlib.Path("artifacts/manifests/pair_manifest.json").read_text())
+utt = manifest["pairs"][0]["utt_id"]
+src = np.load(f"artifacts/cache/features/train/{manifest['source_speaker']}/{utt}.npz")["mfcc"]
+tgt = np.load(f"artifacts/cache/features/train/{manifest['target_speaker']}/{utt}.npz")["mfcc"]
+aligned = api.align_features_dtw(src, tgt)
+converted = api.convert_features(model, src[:, aligned[:,0]])
+print("converted shape", converted.shape)
+PY
+```
+Expected: feature_dim == 13, reasonable aligned path length, converted MFCC shape `(13, frames_aligned)` with finite values.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.

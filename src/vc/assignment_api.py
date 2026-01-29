@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from vc import audio_preproc, features
+from vc import audio_preproc, features, alignment, mapping
 
 
 # -----------------------------------------------------------------------------
@@ -83,15 +83,15 @@ def calculate_pitch_shift_ratio(source_f0: np.ndarray, target_f0: np.ndarray) ->
 
 
 def align_features_dtw(source_features: np.ndarray, target_features: np.ndarray) -> np.ndarray:
-    raise NotImplementedError("Part B not yet implemented")
+    return alignment.align_features_dtw(source_features, target_features)
 
 
 def train_feature_mapping(source_features: np.ndarray, target_features: np.ndarray):
-    raise NotImplementedError("Part B not yet implemented")
+    return mapping.train_feature_mapping(source_features, target_features)
 
 
 def convert_features(model, source_features: np.ndarray) -> np.ndarray:
-    raise NotImplementedError("Part B not yet implemented")
+    return mapping.convert_features(model, source_features)
 
 
 # -----------------------------------------------------------------------------
