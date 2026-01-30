@@ -1,4 +1,4 @@
-# Project State Snapshot (2026-01-29)
+# Project State Snapshot (2026-01-30)
 
 This file captures the current implementation state to speed up future parts.
 
@@ -10,7 +10,7 @@ This file captures the current implementation state to speed up future parts.
 - [x] Part 5: Alignment + mapping (DTW + linear regression)
 - [x] Part 6: Pitch modification
 - [x] Part 7: Spectral conversion + pipeline
-- [ ] Part 8: Metrics + evaluation JSON
+- [x] Part 8: Metrics + evaluation JSON
 - [ ] Part 9: Notebook + report
 - [ ] Part 10: Self-check harness
 
@@ -29,21 +29,25 @@ This file captures the current implementation state to speed up future parts.
 - `src/vc/alignment.py`: DTW alignment using fastdtw, returns path indices.
 - `src/vc/mapping.py`: LinearRegression-based FeatureMappingModel + predict/convert helpers.
 - `src/vc/conversion.py`: Pitch shifting + spectral envelope conversion + full voice conversion pipeline (MFCC mapping -> Griffin-Lim -> pitch shift).
-- `src/vc/assignment_api.py`: exposes Parts A–C (preprocess, features, DTW, mapping, spectral conversion, pipeline); Part D metrics still stubbed.
-- `src/vc/__init__.py`: exports config, io_utils, audio_preproc, features, assignment_api.
+- `src/vc/metrics.py`: Part D metrics (MCD, F0 correlation, formant RMSE) with DTW alignment and robust resampling.
+- `src/vc/assignment_api.py`: exposes Parts A–D (preprocess, features, DTW, mapping, spectral conversion, pipeline, metrics).
+- `src/vc/__init__.py`: exports config, io_utils, audio_preproc, features, metrics, assignment_api.
 
 ## Scripts status
 - `scripts/01_prepare_dataset.py`: implemented; builds deterministic 50-pair manifest (40 train / 10 test) under `artifacts/manifests/pair_manifest.json`; idempotent; optional `--download`.
 - `scripts/02_precompute_features.py`: implemented; caches F0/MFCC/formants per utterance into `artifacts/cache/features/...`, idempotent with `--force`.
 - `scripts/03_train_mapping.py`: implemented; loads cached MFCCs, aligns via DTW, trains LinearRegression mapping, saves to `artifacts/models/mapping_linear.joblib` (idempotent with `--force`).
 - `scripts/04_convert_samples.py`: implemented; runs full conversion pipeline on chosen split (default test), saves WAVs and `conversion_manifest.json` under `artifacts/outputs/converted`.
-- `scripts/05_evaluate.py`, `scripts/06_self_check.py`: placeholders pending future parts.
+- `scripts/05_evaluate.py`: implemented; evaluates converted outputs, reuses cached target features, writes aggregate + per-utt metrics to `artifacts/outputs/evaluation_results.json`.
+  - Latest run (2026-01-30, test split): evaluated=10, mcd≈900.1, f0_corr≈-0.027, formant_rmse≈447.8.
+- `scripts/06_self_check.py`: placeholder pending future parts.
 
 ## Current run order
 1. `python scripts/01_prepare_dataset.py`  # regenerates manifest if missing (use `--force` to overwrite)
 2. `python scripts/02_precompute_features.py`  # caches F0/MFCC/formants (use `--force` to recompute)
 3. `python scripts/03_train_mapping.py`  # align MFCCs with DTW, train LinearRegression mapping
 4. `python scripts/04_convert_samples.py`  # run full Part 7 pipeline on test split (or specify --split/--limit)
+5. `PYTHONPATH=src python scripts/05_evaluate.py --force`  # compute Part 8 metrics, writes evaluation_results.json
 
 ## Quick smoke test (Part 3)
 ```bash
@@ -100,7 +104,7 @@ PY
 Expected: converted files written and listed in the conversion manifest.
 
 ## Pending next steps
-- Implement metrics + evaluation JSON (Part 8), notebook/report (Part 9), self-check (Part 10).
+- Notebook/report (Part 9) and self-check harness (Part 10).
 
 ## Dependency note
 - Added `resampy==0.4.3` to requirements to satisfy librosa pitch shifting backend.

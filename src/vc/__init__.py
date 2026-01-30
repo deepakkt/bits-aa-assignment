@@ -10,13 +10,14 @@ warnings.filterwarnings(
 )
 
 # Export features module after Part 4 so `vc.features` is available to callers.
-from . import config, io_utils, audio_preproc, features, assignment_api
+from . import config, io_utils, audio_preproc, features, metrics, assignment_api
 
 __all__ = [
     "config",
     "io_utils",
     "audio_preproc",
     "features",
+    "metrics",
     "assignment_api",
 ]
 

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from vc import audio_preproc, features, alignment, mapping, conversion
+from vc import audio_preproc, features, alignment, mapping, conversion, metrics
 
 
 # -----------------------------------------------------------------------------
@@ -115,12 +115,12 @@ def voice_conversion_pipeline(
 # Part D - Evaluation (stubs)
 # -----------------------------------------------------------------------------
 def calculate_mcd(converted_mfcc: np.ndarray, target_mfcc: np.ndarray) -> float:
-    raise NotImplementedError("Part D not yet implemented")
+    return metrics.calculate_mcd(converted_mfcc, target_mfcc)
 
 
 def calculate_f0_correlation(converted_f0: np.ndarray, target_f0: np.ndarray) -> float:
-    raise NotImplementedError("Part D not yet implemented")
+    return metrics.calculate_f0_correlation(converted_f0, target_f0)
 
 
 def calculate_formant_rmse(converted_formants: np.ndarray, target_formants: np.ndarray) -> float:
-    raise NotImplementedError("Part D not yet implemented")
+    return metrics.calculate_formant_rmse(converted_formants, target_formants)

@@ -27,7 +27,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 2. `python scripts/02_precompute_features.py`  # Part 4 (feature caching) — implemented
 3. `python scripts/03_train_mapping.py`  # Part 5 (alignment + mapping) — implemented
 4. `python scripts/04_convert_samples.py`  # Part 7 (conversion pipeline)
-5. `python scripts/05_evaluate.py`  # Part 8 (pending)
+5. `python scripts/05_evaluate.py`  # Part 8 (objective metrics)
 6. `python scripts/06_self_check.py`  # Part 10 (pending)
 
 ## Part status checklist
@@ -38,7 +38,7 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-5: Alignment + mapping
 - [x] Part-6: Pitch modification
 - [x] Part-7: Spectral conversion + pipeline
-- [ ] Part-8: Metrics + evaluation JSON
+- [x] Part-8: Metrics + evaluation JSON
 - [ ] Part-9: Notebook + report
 - [ ] Part-10: Self-check harness
 
@@ -203,6 +203,16 @@ print(meta["converted"], "converted;", meta["skipped"], "skipped; example file e
 PY
 ```
 Expected: 10 converted (test split) and non-empty output files.
+
+### Part 8: objective metrics (MCD, F0 corr, formant RMSE)
+Evaluate the converted split (default: test) and write `artifacts/outputs/evaluation_results.json`:
+```bash
+PYTHONPATH=src python scripts/05_evaluate.py --force
+# options: --split train|test|all --limit N --conversion-manifest PATH --output PATH
+```
+Expected outputs:
+- `artifacts/outputs/evaluation_results.json` with aggregate metrics (`mcd`, `f0_correlation`, `formant_rmse`) and per-utterance details.
+- Counts reflect evaluated/ skipped items; target features are reused from the Part 4 cache when available.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.
