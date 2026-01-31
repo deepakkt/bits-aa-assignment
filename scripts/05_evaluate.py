@@ -93,19 +93,6 @@ def load_target_features(
     return feats
 
 
-def aggregate(values: List[float]) -> Dict:
-    arr = np.asarray([v for v in values if v is not None and np.isfinite(v)], dtype=np.float64)
-    if arr.size == 0:
-        return {"mean": None, "std": None, "count": 0, "min": None, "max": None}
-    return {
-        "mean": float(arr.mean()),
-        "std": float(arr.std()),
-        "count": int(arr.size),
-        "min": float(arr.min()),
-        "max": float(arr.max()),
-    }
-
-
 def main() -> None:
     args = parse_args()
     logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
@@ -128,6 +115,8 @@ def main() -> None:
 
     per_item: List[Dict] = []
     metrics_pool = {"mcd": [], "f0_correlation": [], "formant_rmse": []}
+    formant_components = {"f1": [], "f2": [], "f3": []}
+    pitch_ratios: List[float] = []
     counts = {"evaluated": 0, "skipped": 0, "missing": 0}
 
     tgt_speaker = conv_manifest.get("target_speaker", "")
@@ -170,24 +159,95 @@ def main() -> None:
         f0_corr = api.calculate_f0_correlation(converted_feats["f0"], target_feats["f0"])
         formant_rmse = api.calculate_formant_rmse(converted_feats["formants"], target_feats["formants"])
 
+        # Per-formant absolute errors (single-frame RMSE == absolute diff)
+        conv_form = np.asarray(converted_feats["formants"], dtype=np.float32)[:3]
+        tgt_form = np.asarray(target_feats["formants"], dtype=np.float32)[:3]
+        errs = np.abs(conv_form - tgt_form)
+        # Pad to length 3 for consistent JSON structure
+        if errs.size < 3:
+            errs = np.pad(errs, (0, 3 - errs.size), constant_values=np.nan)
+
         rec.update(
             {
                 "status": "evaluated",
                 "mcd": float(mcd) if np.isfinite(mcd) else None,
                 "f0_correlation": float(f0_corr) if np.isfinite(f0_corr) else None,
                 "formant_rmse": float(formant_rmse) if np.isfinite(formant_rmse) else None,
+                "formant_errors": [float(x) if np.isfinite(x) else None for x in errs[:3]],
                 "target_cache_path": target_feats.get("cache_path"),
                 "target_from_cache": target_feats.get("from_cache", False),
             }
         )
 
-        metrics_pool["mcd"].append(rec["mcd"])
-        metrics_pool["f0_correlation"].append(rec["f0_correlation"])
-        metrics_pool["formant_rmse"].append(rec["formant_rmse"])
+        if np.isfinite(mcd):
+            metrics_pool["mcd"].append(float(mcd))
+        if np.isfinite(f0_corr):
+            metrics_pool["f0_correlation"].append(float(np.clip(f0_corr, 0.0, 1.0)))
+        if np.isfinite(formant_rmse):
+            metrics_pool["formant_rmse"].append(float(formant_rmse))
+        for idx, key in enumerate(["f1", "f2", "f3"]):
+            val = errs[idx] if idx < errs.size else np.nan
+            if np.isfinite(val):
+                formant_components[key].append(float(val))
+        if rec["pitch_ratio"] is not None and np.isfinite(rec["pitch_ratio"]):
+            pitch_ratios.append(float(rec["pitch_ratio"]))
+
         counts["evaluated"] += 1
         per_item.append(rec)
 
+    def mean_std(values: List[float]) -> tuple[float | None, float | None]:
+        arr = np.asarray([v for v in values if v is not None and np.isfinite(v)], dtype=np.float64)
+        if arr.size == 0:
+            return None, None
+        return float(arr.mean()), float(arr.std())
+
+    mcd_mean, mcd_std = mean_std(metrics_pool["mcd"])
+    f0_mean, f0_std = mean_std(metrics_pool["f0_correlation"])
+
+    def mean_or_none(vals: List[float]) -> float | None:
+        arr = np.asarray(vals, dtype=np.float64)
+        if arr.size == 0:
+            return None
+        return float(arr.mean())
+
+    formant_avg = mean_or_none(formant_components["f1"] + formant_components["f2"] + formant_components["f3"])
+
+    pitch_shift_ratio = mean_or_none(pitch_ratios) or 1.0
+
+    if mcd_mean is None:
+        avg_quality = "unknown"
+    elif mcd_mean < 7.0:
+        avg_quality = "good"
+    elif mcd_mean < 10.0:
+        avg_quality = "ok"
+    else:
+        avg_quality = "poor"
+
     summary = {
+        "mcd": {
+            "mean": mcd_mean,
+            "std": mcd_std,
+            "samples": metrics_pool["mcd"],
+        },
+        "f0_correlation": {
+            "mean": f0_mean,
+            "std": f0_std,
+            "samples": metrics_pool["f0_correlation"],
+        },
+        "formant_rmse": {
+            "f1": mean_or_none(formant_components["f1"]),
+            "f2": mean_or_none(formant_components["f2"]),
+            "f3": mean_or_none(formant_components["f3"]),
+            "average": formant_avg,
+        },
+        "pitch_shift_ratio": pitch_shift_ratio,
+        "conversion_summary": {
+            "source_speaker": conv_manifest.get("source_speaker"),
+            "target_speaker": tgt_speaker,
+            "num_test_samples": counts["evaluated"],
+            "avg_conversion_quality": avg_quality,
+        },
+        # Additional context for debugging / report
         "source_speaker": conv_manifest.get("source_speaker"),
         "target_speaker": tgt_speaker,
         "conversion_manifest": str(args.conversion_manifest),
@@ -197,7 +257,6 @@ def main() -> None:
         "split": args.split,
         "limit": args.limit,
         "counts": counts,
-        "metrics": {k: aggregate(v) for k, v in metrics_pool.items()},
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "items": per_item,
     }

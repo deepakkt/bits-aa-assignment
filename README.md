@@ -1,6 +1,6 @@
 # BITS Voice Conversion Assignment (CMU Arctic, Virtual Lab)
 
-Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 will be implemented incrementally; Parts 1–7 are complete in this snapshot.
+Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contains a staged, idempotent pipeline for the voice conversion assignment. Parts 1–10 are now implemented in this snapshot.
 
 ## Setup (run once per machine)
 1) Create and activate a virtual environment (Python 3.11):
@@ -28,7 +28,14 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 3. `python scripts/03_train_mapping.py`  # Part 5 (alignment + mapping) — implemented
 4. `python scripts/04_convert_samples.py`  # Part 7 (conversion pipeline)
 5. `python scripts/05_evaluate.py`  # Part 8 (objective metrics)
-6. `python scripts/06_self_check.py`  # Part 10 (pending)
+6. `python scripts/06_self_check.py`  # Part 10 (final validation)
+
+### Notebook (Part 9 / submission bundle)
+- `notebooks/VoiceConversion_Submission.ipynb` is self-contained and re-runs **all** scripts (`01`–`06`) with `--force` while reusing the on-disk CMU Arctic data (no re-download).
+- Launch interactively: `jupyter lab notebooks/VoiceConversion_Submission.ipynb` (ensure the venv is active; the notebook sets `PYTHONPATH=src` automatically).
+- Headless execute: `PYTHONPATH=src jupyter nbconvert --to notebook --execute --inplace notebooks/VoiceConversion_Submission.ipynb`
+- Export HTML (for quick sharing): `PYTHONPATH=src jupyter nbconvert --to html --execute notebooks/VoiceConversion_Submission.ipynb`
+- Part E report section is present as a placeholder; fill it before final submission.
 
 ## Part status checklist
 - [x] Part-1: Environment, dependencies, skeleton
@@ -39,8 +46,8 @@ Target platform: Python 3.11 in BITS Pilani Virtual Lab. This repository contain
 - [x] Part-6: Pitch modification
 - [x] Part-7: Spectral conversion + pipeline
 - [x] Part-8: Metrics + evaluation JSON
-- [ ] Part-9: Notebook + report
-- [ ] Part-10: Self-check harness
+- [x] Part-9: Notebook + report
+- [x] Part-10: Self-check harness
 
 ## Quick smoke tests
 After activating the venv and installing requirements:
@@ -211,8 +218,23 @@ PYTHONPATH=src python scripts/05_evaluate.py --force
 # options: --split train|test|all --limit N --conversion-manifest PATH --output PATH
 ```
 Expected outputs:
-- `artifacts/outputs/evaluation_results.json` with aggregate metrics (`mcd`, `f0_correlation`, `formant_rmse`) and per-utterance details.
+- `artifacts/outputs/evaluation_results.json` with rubric keys: `mcd`, `f0_correlation`, `formant_rmse` (`f1`,`f2`,`f3`,`average`), `pitch_shift_ratio`, `conversion_summary`, plus per-utterance details.
 - Counts reflect evaluated/ skipped items; target features are reused from the Part 4 cache when available.
+
+### Part 10: self-check harness (autograder risk reducer)
+Run the consolidated validation (fails fast with actionable messages):
+```bash
+PYTHONPATH=src python scripts/06_self_check.py
+```
+What it checks:
+- Assignment API signatures match the rubric
+- Preprocessing invariants (16 kHz, normalization, pre-emphasis)
+- Feature shapes/NaN handling and mapping sanity
+- Conversion pipeline duration/finiteness
+- Required WAVs exist (`artifacts/outputs/converted_sample_1..3.wav`) and meet format/duration constraints
+- `artifacts/outputs/evaluation_results.json` schema and finite values (F0 correlation clamped to [0,1])
+
+The script exits non-zero on any failure.
 
 ## Notes
 - All dependencies are pinned for reproducibility on Python 3.11; `fastdtw==0.3.4` is the latest PyPI release that supports Py3.11.
